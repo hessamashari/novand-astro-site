@@ -1,0 +1,33 @@
+---
+import { company } from '../../data/site';
+const { light = false } = Astro.props;
+const border = light ? 'border-black-950/15' : 'border-black-50/15';
+const muted = light ? 'text-black-950/60' : 'text-black-50/60';
+const href = light ? 'hover:text-black-950' : 'hover:text-black-50';
+---
+<footer class={`border-t ${border}`}>
+  <div class="container-wide py-14 lg:py-18">
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <a href="/" class="text-sm font-bold tracking-[0.22em] uppercase">Novand</a>
+        <p class={`mt-5 max-w-xs text-sm leading-6 ${muted}`}>Integrated technology engineering and infrastructure systems, designed as one coherent environment.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Company</p>
+        <div class={`mt-5 grid gap-2 text-sm ${muted}`}><a class={href} href="/about">About</a><a class={href} href="/consulting">Our Approach</a><a class={href} href="/projects">Projects</a></div>
+      </div>
+      <div>
+        <p class="eyebrow">Services</p>
+        <div class={`mt-5 grid gap-2 text-sm ${muted}`}><a class={href} href="/services">Networking & IT</a><a class={href} href="/services">Enterprise Services</a><a class={href} href="/services">Infrastructure Administration</a><a class={href} href="/services">Smart Technology</a><a class={href} href="/services">Security & Surveillance</a><a class={href} href="/services">Technical Support</a></div>
+      </div>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <div class={`mt-5 grid gap-2 text-sm ${muted}`}><span>{company.phone}</span><span>{company.email}</span><span>{company.address}</span><span>{company.hours}</span></div>
+      </div>
+    </div>
+    <div class={`mt-14 flex flex-col gap-4 border-t pt-6 text-xs md:flex-row md:items-center md:justify-between ${border} ${muted}`}>
+      <span>© {new Date().getFullYear()} Novand. All rights reserved.</span>
+      <div class="flex gap-5"><a class={href} href="#">Privacy Policy</a><a class={href} href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,74 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Icon from '../components/ui/Icon.astro';
+import ServiceCard from '../components/cards/ServiceCard.astro';
+import SectionIntro from '../components/sections/SectionIntro.astro';
+import TechnicalVisual from '../components/sections/TechnicalVisual.astro';
+import { getCollection } from 'astro:content';
+import { capabilities, process, whyUs } from '../data/site';
+const services = (await getCollection('services')).sort((a,b) => a.data.title.localeCompare(b.data.title));
+const featuredServices = ['network-infrastructure','enterprise-services','infrastructure-administration','smart-homes-buildings','security-surveillance','hardware-support'];
+const serviceMap = new Map(services.map(s => [s.id, s]));
+---
+<SiteLayout title="Novand — Integrated Technology & Infrastructure Solutions" description="Novand designs, implements, configures, and supports integrated technology systems across networking, infrastructure, security, automation, and smart environments.">
+  <section class="noise relative overflow-hidden bg-black-950 text-black-50">
+    <div class="container-wide grid min-h-[calc(100svh-4.5rem)] items-end gap-14 py-16 lg:grid-cols-[1.5fr_1fr] lg:py-20">
+      <div class="reveal pb-4">
+        <p class="eyebrow text-white/55">Technology infrastructure / integrated systems</p>
+        <h1 class="display mt-7 max-w-5xl">Integrated Technology & Infrastructure Solutions</h1>
+        <p class="body-lg mt-8 max-w-3xl text-white/65">We design, implement, configure, and support reliable technology systems across networking, infrastructure, security, automation, and smart environments.</p>
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+          <a href="/contact" class="inline-flex items-center justify-center gap-3 border border-white/70 px-5 py-3.5 text-sm font-semibold hover:bg-white hover:text-black-950 transition-colors">Request a Consultation <Icon name="arrow" class="size-4" /></a>
+          <a href="/services" class="inline-flex items-center justify-center gap-3 border border-white/15 px-5 py-3.5 text-sm font-semibold text-white/75 hover:text-white hover:border-white/35 transition-colors">Explore Our Services</a>
+        </div>
+      </div>
+      <div class="reveal lg:pb-5" style="animation-delay:.12s"><TechnicalVisual /></div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="container-wide grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        {capabilities.map((item) => <div class="border-r border-white/10 px-4 py-4 text-xs uppercase tracking-[0.12em] text-white/55 first:border-l">{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-almond-50 text-black-950 py-20 lg:py-28">
+    <div class="container-wide">
+      <SectionIntro eyebrow="Positioning / 01" title="Technology systems designed to work together" body="We approach networking, infrastructure, security, automation, smart systems, and related technologies as connected parts of one environment — designed for real spaces, real operations, and future change." light />
+      <div class="mt-14 grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
+        <div class="border border-black-950/15 p-6 sm:p-8"><p class="eyebrow text-black-950/45">Engineering mindset</p><p class="mt-16 max-w-xl text-2xl leading-tight tracking-tight">The goal is not to add more technology. It is to make the technology you need coherent, dependable, and understandable.</p></div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+          <div class="border border-black-950/15 p-6"><p class="eyebrow text-black-950/45">01</p><p class="mt-8 font-semibold">Infrastructure first</p><p class="mt-2 text-sm leading-6 text-black-950/60">Build the network and technical foundation that everything else can rely on.</p></div>
+          <div class="border border-black-950/15 p-6"><p class="eyebrow text-black-950/45">02</p><p class="mt-8 font-semibold">Integration by design</p><p class="mt-2 text-sm leading-6 text-black-950/60">Treat the interfaces between systems as part of the engineering problem.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-black-950 text-black-50 py-20 lg:py-28">
+    <div class="container-wide"><SectionIntro eyebrow="Capabilities / 02" title="Core services" body="A connected service portfolio spanning the systems that make modern technical environments work." />
+      <div class="mt-14 grid gap-x-8 md:grid-cols-2 xl:grid-cols-3">{featuredServices.map((id, index) => { const s = serviceMap.get(id)!; return <ServiceCard number={`0${index+1}`} title={s.data.title} description={s.data.description} href={`/services/${id}`} />; })}</div>
+    </div>
+  </section>
+
+  <section class="bg-khaki-50 text-black-950 py-20 lg:py-28">
+    <div class="container-wide"><SectionIntro eyebrow="Solutions / 03" title="Solutions by environment" body="The same technical disciplines take different forms depending on the environment, operational priorities, and constraints." light />
+      <div class="mt-14 grid gap-0 border-t border-black-950/15 md:grid-cols-2 lg:grid-cols-5">
+        {['Business & Enterprise','Education','Residential','Healthcare & Hospitality','Specialized Facilities'].map((item,index) => <a href="/solutions" class="group border-b border-r border-black-950/15 p-6 md:min-h-52 lg:min-h-64 hover:bg-black-950 hover:text-black-50 transition-colors"><span class="eyebrow text-black-950/45 group-hover:text-white/45">0{index+1}</span><div class="mt-14 flex items-end justify-between gap-4"><span class="font-semibold leading-tight">{item}</span><Icon name="arrow" class="size-4 translate-x-0 group-hover:translate-x-1 transition-transform" /></div></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-jet-950 text-black-50 py-20 lg:py-28">
+    <div class="container-wide"><SectionIntro eyebrow="Delivery / 04" title="A practical four-stage process" body="A simple delivery model keeps discovery, architecture, implementation, and support connected." />
+      <div class="mt-14 grid gap-px bg-white/10 md:grid-cols-4">{process.map(([n,t,d]) => <div class="bg-jet-950 p-6 sm:p-7"><span class="eyebrow text-white/40">{n}</span><h3 class="mt-12 text-xl font-semibold tracking-tight">{t}</h3><p class="mt-3 text-sm leading-6 text-white/55">{d}</p></div>)}</div>
+    </div>
+  </section>
+
+  <section class="bg-almond-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><SectionIntro eyebrow="Why Novand / 05" title="Quiet confidence over generic claims" body="The positioning is intentionally specific: integrated expertise, practical engineering, and systems that remain maintainable after implementation." light /><div class="mt-14 divide-y divide-black-950/15 border-y border-black-950/15">{whyUs.map(([title,text],i) => <div class="grid gap-4 py-7 lg:grid-cols-[5rem_1fr_1.2fr] lg:items-center"><span class="eyebrow text-black-950/35">0{i+1}</span><h3 class="font-semibold">{title}</h3><p class="text-sm leading-6 text-black-950/60 lg:max-w-xl">{text}</p></div>)}</div></div></section>
+
+  <section class="bg-black-950 text-black-50 py-20 lg:py-28"><div class="container-wide"><SectionIntro eyebrow="Selected directions / 06" title="Projects — structured for future case studies" body="These editorial placeholders establish the intended project architecture without implying work that has not been supplied or verified." /><div class="mt-14 grid gap-5 md:grid-cols-2">{(await getCollection('projects')).map((p) => <a href={`/projects/${p.id}`} class="group border border-white/12 p-6 min-h-64 hover:bg-white/[.03] transition-colors"><div class="flex justify-between gap-6"><span class="eyebrow text-white/40">Placeholder</span><Icon name="arrow" class="size-4 text-white/45 group-hover:translate-x-1 transition-transform" /></div><h3 class="h3 mt-16 max-w-md">{p.data.title}</h3><p class="mt-3 max-w-lg text-sm leading-6 text-white/55">{p.data.summary}</p></a>)}</div></div></section>
+
+  <section class="bg-khaki-50 text-black-950 py-20 lg:py-24"><div class="container-wide grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"><div><p class="eyebrow text-black-950/45">Consulting / 07</p><h2 class="h2 mt-5 max-w-3xl">Need help choosing the right equipment?</h2><p class="body-lg mt-5 max-w-2xl text-black-950/65">We can act as a technical advisor for networking, servers, security, automation, and IT equipment selection and procurement.</p></div><a href="/consulting" class="inline-flex items-center justify-center gap-3 border border-black-950/30 px-5 py-3.5 text-sm font-semibold hover:bg-black-950 hover:text-white transition-colors">Explore Consulting <Icon name="arrow" class="size-4" /></a></div></section>
+
+  <section class="bg-black-950 text-black-50"><div class="container-wide py-20 lg:py-28"><p class="eyebrow text-white/45">Start a conversation</p><div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"><h2 class="h1 mt-5 max-w-4xl">Have a technology project in mind?</h2><div class="flex flex-col gap-3 sm:flex-row lg:flex-col"><a href="/contact" class="inline-flex items-center justify-center gap-3 border border-white/70 px-5 py-3.5 text-sm font-semibold hover:bg-white hover:text-black-950 transition-colors">Request a Consultation <Icon name="arrow" class="size-4" /></a><a href="/contact" class="inline-flex items-center justify-center gap-3 border border-white/15 px-5 py-3.5 text-sm font-semibold text-white/70">Contact Us</a></div></div></div></section>
+</SiteLayout>

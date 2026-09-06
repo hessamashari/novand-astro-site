@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Icon from '../../components/ui/Icon.astro';
+export async function getStaticPaths(){ const entries=await getCollection('projects'); return entries.map(entry=>({params:{slug:entry.id},props:{entry}})); }
+const {entry}=Astro.props;
+---
+<SiteLayout title={`${entry.data.title} — Novand`} description={entry.data.summary}>
+<section class="bg-black-950 text-black-50 py-20 lg:py-28"><div class="container-wide"><a href="/projects" class="eyebrow text-white/40">Projects / Catalog</a><div class="mt-10 grid gap-10 lg:grid-cols-[1fr_.7fr]"><div><p class="eyebrow text-white/45">{entry.data.category}</p><h1 class="h1 mt-6">{entry.data.title}</h1></div><p class="body-lg text-white/65">{entry.data.summary}</p></div><div class="mt-12 border border-white/12 p-6 text-sm text-white/55">This is an illustrative placeholder and is not presented as a verified client project.</div></div></section>
+<section class="bg-khaki-50 text-black-950 py-20 lg:py-28"><div class="container-wide grid gap-6 md:grid-cols-2"><div class="border border-black-950/15 p-6"><p class="eyebrow">Challenge</p><p class="mt-8 text-lg leading-7">{entry.data.challenge}</p></div><div class="border border-black-950/15 p-6"><p class="eyebrow">Solution</p><p class="mt-8 text-lg leading-7">{entry.data.solution}</p></div><div class="border border-black-950/15 p-6"><p class="eyebrow">Result</p><p class="mt-8 text-lg leading-7">{entry.data.result}</p></div><div class="border border-black-950/15 p-6"><p class="eyebrow">Environment</p><p class="mt-8 text-lg leading-7">{entry.data.environment}</p></div></div></section>
+<section class="bg-jet-950 text-black-50 py-20"><div class="container-wide grid gap-10 lg:grid-cols-2"><div><p class="eyebrow text-white/40">Services</p><div class="mt-6 flex flex-wrap gap-2">{entry.data.services.map(s=><span class="border border-white/12 px-3 py-2 text-xs">{s}</span>)}</div></div><div><p class="eyebrow text-white/40">Technologies</p><div class="mt-6 flex flex-wrap gap-2">{entry.data.technologies.map(s=><span class="border border-white/12 px-3 py-2 text-xs">{s}</span>)}</div></div></div></section>
+<section class="bg-black-950 text-black-50 py-16"><div class="container-wide flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><h2 class="text-2xl font-semibold">Ready to replace the placeholder with a real project?</h2><a href="/contact" class="inline-flex items-center gap-3 border border-white/25 px-5 py-3.5 text-sm font-semibold">Start a conversation <Icon name="arrow" class="size-4"/></a></div></section>
+</SiteLayout>

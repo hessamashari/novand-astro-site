@@ -1,0 +1,13 @@
+---
+import Icon from '../ui/Icon.astro';
+interface Props { number: string; title: string; description: string; href: string; }
+const { number, title, description, href } = Astro.props;
+---
+<a href={href} class="group block border-t border-current/20 pt-5 pb-7 hover:bg-white/[.03] transition-colors">
+  <div class="flex items-start justify-between gap-6">
+    <span class="eyebrow opacity-55">{number}</span>
+    <Icon name="arrow" class="size-5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+  </div>
+  <h3 class="h3 mt-10 max-w-md">{title}</h3>
+  <p class="mt-4 max-w-xl text-sm leading-6 text-white/60">{description}</p>
+</a>

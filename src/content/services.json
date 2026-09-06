@@ -1,0 +1,79 @@
+[
+  {
+    "id": "network-infrastructure",
+    "title": "Network Infrastructure & IT",
+    "eyebrow": "01 / CONNECTIVITY",
+    "description": "Structured networking systems planned around reliability, performance, maintainability, and future growth.",
+    "intro": "We design and implement network foundations that support people, devices, systems, and data without treating connectivity as an isolated layer.",
+    "capabilities": ["LAN / WLAN architecture", "Structured cabling planning", "Routing & switching", "Network segmentation", "Enterprise Wi-Fi", "Infrastructure documentation"],
+    "environments": ["Business & enterprise", "Education", "Healthcare & hospitality", "Specialized facilities"],
+    "related": ["enterprise-services", "infrastructure-administration", "security-surveillance"],
+    "accent": "dark"
+  },
+  {
+    "id": "enterprise-services",
+    "title": "Enterprise & Network Services",
+    "eyebrow": "02 / SERVICES",
+    "description": "Core infrastructure services that connect network, compute, storage, and service availability into one operating environment.",
+    "intro": "The focus is operational continuity: clean architectures, sensible service boundaries, and infrastructure that can be supported after handover.",
+    "capabilities": ["Directory and core services", "DNS / DHCP architecture", "Virtualization support", "Server and storage integration", "Backup architecture planning", "Service monitoring concepts"],
+    "environments": ["Business & enterprise", "Education", "Specialized facilities"],
+    "related": ["network-infrastructure", "infrastructure-administration", "hardware-support"],
+    "accent": "dark"
+  },
+  {
+    "id": "infrastructure-administration",
+    "title": "Linux & Infrastructure Administration",
+    "eyebrow": "03 / OPERATIONS",
+    "description": "Practical administration for Linux-based systems and infrastructure with an emphasis on stability, clarity, and repeatability.",
+    "intro": "We approach administration as engineering work: predictable configurations, documented changes, controlled access, and infrastructure that remains understandable over time.",
+    "capabilities": ["Linux server administration", "System hardening", "Service configuration", "Network service operations", "Virtual machine administration", "Technical documentation"],
+    "environments": ["Business & enterprise", "Education", "Specialized facilities"],
+    "related": ["enterprise-services", "network-infrastructure", "security-surveillance"],
+    "accent": "light"
+  },
+  {
+    "id": "smart-homes-buildings",
+    "title": "Smart Homes & Buildings",
+    "eyebrow": "04 / AUTOMATION",
+    "description": "Integrated automation for residential and commercial environments, designed around usable control rather than gadget accumulation.",
+    "intro": "Smart technology becomes valuable when lighting, climate, access, scenes, and connected devices operate as a coherent environment.",
+    "capabilities": ["Lighting and scene control", "Climate integration", "Access and entry automation", "Sensor integration", "Centralized control interfaces", "Residential and commercial automation"],
+    "environments": ["Residential", "Business & enterprise", "Healthcare & hospitality"],
+    "related": ["security-surveillance", "network-infrastructure", "audio-power"],
+    "accent": "warm"
+  },
+  {
+    "id": "security-surveillance",
+    "title": "Security & Surveillance",
+    "eyebrow": "05 / PROTECTION",
+    "description": "CCTV, access control, and related security systems integrated into the wider technology environment.",
+    "intro": "Security systems are most useful when their infrastructure, access logic, monitoring, and physical deployment are considered together.",
+    "capabilities": ["CCTV system planning", "Camera and recorder architecture", "Access control integration", "Networked security devices", "Monitoring concepts", "Deployment coordination"],
+    "environments": ["Business & enterprise", "Residential", "Healthcare & hospitality", "Specialized facilities"],
+    "related": ["network-infrastructure", "smart-homes-buildings", "audio-power"],
+    "accent": "dark"
+  },
+  {
+    "id": "audio-power",
+    "title": "Audio, Power & Integrated Systems",
+    "eyebrow": "06 / INTEGRATION",
+    "description": "Technology layers that need to coexist cleanly with networking, automation, and the physical environment.",
+    "intro": "Where systems overlap, coordination matters. We design around the interfaces between technical infrastructure and the spaces in which people use it.",
+    "capabilities": ["Audio system integration", "Technical power considerations", "Control interfaces", "System interconnection", "Equipment coordination", "Installation planning"],
+    "environments": ["Residential", "Business & enterprise", "Healthcare & hospitality"],
+    "related": ["smart-homes-buildings", "network-infrastructure", "hardware-support"],
+    "accent": "warm"
+  },
+  {
+    "id": "hardware-support",
+    "title": "Hardware & Technical Support",
+    "eyebrow": "07 / SUPPORT",
+    "description": "Equipment selection, installation support, troubleshooting, and practical lifecycle assistance for technology systems.",
+    "intro": "Support is positioned around the system, not just the device: configuration, compatibility, documentation, and sensible replacement decisions all matter.",
+    "capabilities": ["Equipment selection support", "Installation coordination", "Troubleshooting", "Configuration assistance", "Lifecycle planning", "Procurement guidance"],
+    "environments": ["Business & enterprise", "Education", "Residential", "Healthcare & hospitality"],
+    "related": ["enterprise-services", "network-infrastructure", "consulting"],
+    "accent": "light"
+  }
+]

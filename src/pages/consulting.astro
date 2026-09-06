@@ -1,0 +1,10 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SectionIntro from '../components/sections/SectionIntro.astro';
+import Icon from '../components/ui/Icon.astro';
+---
+<SiteLayout title="Consulting — Novand" description="Technical consulting for choosing and procuring networking, server, security, automation, and IT equipment." light>
+<section class="bg-khaki-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><p class="eyebrow text-black-950/45">Consulting / 01</p><h1 class="h1 mt-6 max-w-5xl">Need help choosing the right equipment?</h1><p class="body-lg mt-7 max-w-3xl text-black-950/65">Use Novand as a technical advisor when equipment selection, compatibility, architecture, and procurement decisions need more structure.</p></div></section>
+<section class="bg-black-950 text-black-50 py-20 lg:py-28"><div class="container-wide"><SectionIntro eyebrow="Advisory scope / 02" title="Start with the system, not the shopping list." body="The right equipment depends on the architecture, environment, constraints, and operational goals around it."/><div class="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{['Networking equipment','Servers & infrastructure','Security systems','Automation & smart technology'].map((x,i)=><div class="border border-white/12 p-6"><span class="eyebrow text-white/35">0{i+1}</span><p class="mt-16 text-lg font-semibold">{x}</p></div>)}</div></div></section>
+<section class="bg-almond-50 text-black-950 py-20"><div class="container-wide"><div class="flex flex-col gap-7 sm:flex-row sm:items-end sm:justify-between"><div><p class="eyebrow text-black-950/45">Next step</p><h2 class="h2 mt-4">Bring the requirements. We will help structure the decision.</h2></div><a href="/contact" class="inline-flex items-center gap-3 border border-black-950/25 px-5 py-3.5 text-sm font-semibold hover:bg-black-950 hover:text-white">Request a Consultation <Icon name="arrow" class="size-4"/></a></div></div></section>
+</SiteLayout>

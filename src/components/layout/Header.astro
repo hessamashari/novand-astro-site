@@ -1,0 +1,65 @@
+---
+import Logo from './Logo.astro';
+import Icon from '../ui/Icon.astro';
+import { navigation } from '../../data/site';
+const { light = false } = Astro.props;
+const tone = light ? 'text-black-950 border-black-950/15' : 'text-black-50 border-black-50/15';
+---
+<header class={`sticky top-0 z-50 border-b backdrop-blur-xl bg-black-950/80 ${light ? 'bg-khaki-50/85' : ''} ${tone}`}>
+  <div class="container-wide flex h-[4.5rem] items-center justify-between gap-4">
+    <Logo />
+    <nav class="hidden lg:flex items-center gap-7 text-sm" aria-label="Primary navigation">
+      <a href="/" class="hover:opacity-60 transition-opacity">Home</a>
+      <a href="/about" class="hover:opacity-60 transition-opacity">About</a>
+      <details class="group relative">
+        <summary class="list-none flex cursor-pointer items-center gap-1 hover:opacity-60 [&::-webkit-details-marker]:hidden">Services <span aria-hidden="true">⌄</span></summary>
+        <div class="absolute left-1/2 top-full mt-4 w-[34rem] -translate-x-1/2 border border-current/15 bg-black-950 p-5 shadow-2xl">
+          <div class="grid grid-cols-2 gap-2">
+            {navigation.primary.filter((item) => item.href.startsWith('/services')).map((item) => <a href={item.href} class="border border-current/10 px-4 py-3 text-sm hover:bg-white/5 transition-colors">{item.label}</a>)}
+          </div>
+        </div>
+      </details>
+      <details class="group relative">
+        <summary class="list-none flex cursor-pointer items-center gap-1 hover:opacity-60 [&::-webkit-details-marker]:hidden">Solutions <span aria-hidden="true">⌄</span></summary>
+        <div class="absolute left-1/2 top-full mt-4 w-80 -translate-x-1/2 border border-current/15 bg-black-950 p-5 shadow-2xl">
+          <div class="grid gap-2">
+            <a href="/solutions/business" class="border border-current/10 px-4 py-3 text-sm hover:bg-white/5">Business & Enterprise</a>
+            <a href="/solutions/education" class="border border-current/10 px-4 py-3 text-sm hover:bg-white/5">Education</a>
+            <a href="/solutions/residential" class="border border-current/10 px-4 py-3 text-sm hover:bg-white/5">Residential</a>
+            <a href="/solutions/healthcare-hospitality" class="border border-current/10 px-4 py-3 text-sm hover:bg-white/5">Healthcare & Hospitality</a>
+            <a href="/solutions/specialized-facilities" class="border border-current/10 px-4 py-3 text-sm hover:bg-white/5">Specialized Facilities</a>
+          </div>
+        </div>
+      </details>
+      <a href="/projects" class="hover:opacity-60 transition-opacity">Projects</a>
+      <a href="/consulting" class="hover:opacity-60 transition-opacity">Consulting</a>
+      <a href="/contact" class="hover:opacity-60 transition-opacity">Contact</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="/contact" class="hidden sm:inline-flex items-center gap-3 border border-current/25 px-4 py-2.5 text-sm font-semibold hover:bg-white/5 transition-colors">
+        Request a Consultation <Icon name="arrow" class="size-4" />
+      </a>
+      <button id="menu-toggle" type="button" class="lg:hidden grid size-11 place-items-center border border-current/20" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <Icon name="menu" class="size-5" />
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-current/10" aria-hidden="true">
+    <div class="container-wide py-5 grid gap-1">
+      {navigation.primary.map((item) => <a href={item.href} class="px-2 py-3 text-base border-b border-current/10">{item.label}</a>)}
+      <a href="/contact" class="mt-3 inline-flex items-center justify-between border border-current/25 px-4 py-3 font-semibold">Request a Consultation <Icon name="arrow" class="size-4" /></a>
+    </div>
+  </div>
+</header>
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    if (!menu || !toggle) return;
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    menu.classList.toggle('hidden', open);
+    menu.setAttribute('aria-hidden', String(open));
+  });
+</script>
