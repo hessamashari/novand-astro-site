@@ -15,10 +15,5 @@
     "tailwindcss": "latest",
     "@tailwindcss/vite": "latest",
     "zod": "latest"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "sharp"
-    ]
   }
 }
