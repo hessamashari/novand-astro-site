@@ -26,7 +26,8 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v7
-
+      - name: Install dependencies
+        run: pnpm install --allow-scripts
       - name: Install, build, and upload your site
         uses: withastro/action@v6
         with:
