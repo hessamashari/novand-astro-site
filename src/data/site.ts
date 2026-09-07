@@ -1,21 +1,52 @@
 export const company = {
   name: 'Novand',
   positioning: 'Integrated technology engineering and infrastructure partner',
-  email: '[business-email@example.com]',
-  phone: '[+00 000 000 0000]',
-  address: '[Business address placeholder]',
-  hours: '[Working hours placeholder]',
+  email: 'novand.info@gmail.com',
+  phone: '+1 (555) 293-8471',
+  address: 'Engineering & Infrastructure Systems',
+  hours: 'Mon – Fri, 08:00 – 18:00',
 };
+
+/**
+ * Resolves a root-relative path against the application's base URL.
+ * Automatically adapts to GitHub Pages project subpaths (e.g. /novand-astro-site/)
+ * and root deployments (local dev, AI Studio, or custom domains like novand.com).
+ */
+export function path(href: string): string {
+  if (!href.startsWith('/')) return href;
+  const rawBase = import.meta.env.BASE_URL || '/';
+  const cleanBase = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+  if (href === '/') {
+    return cleanBase ? `${cleanBase}/` : '/';
+  }
+  return `${cleanBase}${href}`;
+}
 
 export const navigation = {
   primary: [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Services', href: '/services' },
-    { label: 'Solutions', href: '/solutions' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Consulting', href: '/consulting' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Home', href: path('/') },
+    { label: 'About', href: path('/about') },
+    { label: 'Services', href: path('/services') },
+    { label: 'Solutions', href: path('/solutions') },
+    { label: 'Projects', href: path('/projects') },
+    { label: 'Consulting', href: path('/consulting') },
+    { label: 'Contact', href: path('/contact') },
+  ],
+  services: [
+    { id: 'network-infrastructure', label: 'Network Infrastructure & IT', href: path('/services/network-infrastructure') },
+    { id: 'enterprise-services', label: 'Enterprise & Network Services', href: path('/services/enterprise-services') },
+    { id: 'infrastructure-administration', label: 'Linux & Infrastructure Administration', href: path('/services/infrastructure-administration') },
+    { id: 'smart-homes-buildings', label: 'Smart Homes & Buildings', href: path('/services/smart-homes-buildings') },
+    { id: 'security-surveillance', label: 'Security & Surveillance', href: path('/services/security-surveillance') },
+    { id: 'audio-power', label: 'Audio, Power & Integrated Systems', href: path('/services/audio-power') },
+    { id: 'hardware-support', label: 'Hardware & Technical Support', href: path('/services/hardware-support') },
+  ],
+  solutions: [
+    { id: 'business', label: 'Business & Enterprise', href: path('/solutions/business') },
+    { id: 'education', label: 'Education', href: path('/solutions/education') },
+    { id: 'residential', label: 'Residential', href: path('/solutions/residential') },
+    { id: 'healthcare-hospitality', label: 'Healthcare & Hospitality', href: path('/solutions/healthcare-hospitality') },
+    { id: 'specialized-facilities', label: 'Specialized Facilities', href: path('/solutions/specialized-facilities') },
   ],
 };
 

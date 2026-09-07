@@ -1,13 +1,91 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import Icon from '../../components/ui/Icon.astro';
-export async function getStaticPaths(){ const entries=await getCollection('solutions'); return entries.map(entry=>({params:{slug:entry.id},props:{entry}})); }
-const {entry}=Astro.props;
+import { path } from '../../data/site';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('solutions');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+
+const relevantServices = await Promise.all(
+  entry.data.relevantServices.map(async (id) => {
+    const service = await getEntry('services', id);
+    return {
+      id,
+      title: service?.data.title ?? id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+      description: service?.data.description ?? '',
+    };
+  })
+);
 ---
-<SiteLayout title={`${entry.data.title} — Novand`} description={entry.data.description} light>
-<section class="bg-khaki-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><a href="/solutions" class="eyebrow text-black-950/45">Solutions / Catalog</a><div class="mt-10 grid gap-10 lg:grid-cols-[1.1fr_.9fr]"><div><p class="eyebrow text-black-950/45">{entry.data.eyebrow}</p><h1 class="h1 mt-6">{entry.data.title}</h1></div><p class="body-lg text-black-950/65">{entry.data.description}</p></div></div></section>
-<section class="bg-black-950 text-black-50 py-20"><div class="container-wide"><p class="eyebrow text-white/40">Priorities / 01</p><div class="mt-7 grid gap-3 md:grid-cols-2 lg:grid-cols-4">{entry.data.priorities.map((p,index)=><div class="border border-white/12 p-5"><span class="eyebrow text-white/30">0{index+1}</span><p class="mt-12 text-sm">{p}</p></div>)}</div></div></section>
-<section class="bg-almond-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start"><div><p class="eyebrow text-black-950/45">Relevant services / 02</p><h2 class="h2 mt-5">Build the stack around the environment.</h2></div><div class="grid gap-3">{entry.data.relevantServices.map((id)=><a href={`/services/${id}`} class="group flex items-center justify-between border border-black-950/15 px-5 py-4 hover:bg-black-950 hover:text-white transition-colors"><span class="text-sm">{id.replaceAll('-', ' ')}</span><Icon name="arrow" class="size-4 group-hover:translate-x-1 transition-transform"/></a>)}</div></div></div></section>
-<section class="bg-black-950 text-black-50 py-16"><div class="container-wide flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><h2 class="text-2xl font-semibold">Need an environment-specific conversation?</h2><a href="/contact" class="inline-flex items-center gap-3 border border-white/25 px-5 py-3.5 text-sm font-semibold">Request a Consultation <Icon name="arrow" class="size-4"/></a></div></section>
+<SiteLayout
+  title={`${entry.data.title} Solutions — Novand`}
+  description={entry.data.description}
+  section="Solutions by Environment"
+  tags={entry.data.priorities}
+  light
+>
+<section class="bg-khaki-50 text-black-950 py-20 lg:py-28">
+  <div class="container-wide">
+    <a href={path('/solutions')} class="eyebrow text-black-950/45 hover:text-black-950 inline-flex items-center gap-1.5 transition-colors">
+      <span>Solutions</span> <span aria-hidden="true">/</span> <span>Environment Catalog</span>
+    </a>
+    <div class="mt-10 grid gap-10 lg:grid-cols-[1.1fr_.9fr]">
+      <div>
+        <p class="eyebrow text-black-950/45">{entry.data.eyebrow}</p>
+        <h1 class="h1 mt-6">{entry.data.title}</h1>
+      </div>
+      <p class="body-lg text-black-950/65">{entry.data.description}</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-black-950 text-black-50 py-20">
+  <div class="container-wide">
+    <p class="eyebrow text-white/40">Priorities / 01</p>
+    <div class="mt-7 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+      {entry.data.priorities.map((p, index) => (
+        <div class="border border-white/12 p-5">
+          <span class="eyebrow text-white/30">0{index + 1}</span>
+          <p class="mt-12 text-sm font-medium leading-snug">{p}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="bg-almond-50 text-black-950 py-20 lg:py-28">
+  <div class="container-wide">
+    <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+      <div>
+        <p class="eyebrow text-black-950/45">Relevant services / 02</p>
+        <h2 class="h2 mt-5">Build the stack around the environment.</h2>
+        <p class="mt-4 text-sm leading-6 text-black-950/60 max-w-md">
+          Every facility archetype integrates a dedicated tier of connectivity, physical security, administration, and automated subsystems.
+        </p>
+      </div>
+      <div class="grid gap-3">
+        {relevantServices.map((item) => (
+          <a href={path(`/services/${item.id}`)} class="group flex items-center justify-between border border-black-950/15 px-5 py-4 hover:bg-black-950 hover:text-white transition-colors">
+            <span class="text-sm font-medium">{item.title}</span>
+            <Icon name="arrow" class="size-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-black-950 text-black-50 py-16">
+  <div class="container-wide flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+    <h2 class="text-2xl font-semibold">Need an environment-specific conversation?</h2>
+    <a href={path('/contact')} class="inline-flex items-center gap-3 border border-white/25 px-5 py-3.5 text-sm font-semibold hover:bg-white hover:text-black-950 transition-colors">
+      Request a Consultation <Icon name="arrow" class="size-4"/>
+    </a>
+  </div>
+</section>
 </SiteLayout>

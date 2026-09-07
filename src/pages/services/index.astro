@@ -3,9 +3,14 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import SectionIntro from '../../components/sections/SectionIntro.astro';
 import ServiceCard from '../../components/cards/ServiceCard.astro';
 import { getCollection } from 'astro:content';
+import { path } from '../../data/site';
 const services = await getCollection('services');
 ---
-<SiteLayout title="Services — Novand" description="Integrated networking, enterprise services, infrastructure administration, automation, security, and technical support." light>
+<SiteLayout
+  title="Engineering Services Catalog — Novand"
+  description="Explore Novand's technology engineering services: enterprise networking, server infrastructure, Linux administration, smart buildings, CCTV surveillance, and support."
+  light
+>
 <section class="bg-khaki-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><p class="eyebrow text-black-950/45">Services / 01</p><h1 class="h1 mt-6 max-w-5xl">A connected technical service portfolio.</h1><p class="body-lg mt-7 max-w-3xl text-black-950/65">Each discipline has a clear role, but the operating model treats the environment as a whole.</p></div></section>
-<section class="bg-black-950 text-black-50 py-20 lg:py-28"><div class="container-wide"><SectionIntro eyebrow="Service catalog / 02" title="Design, implementation, configuration, support" body="Use the service pages as structured building blocks: shared layout, typed data, explicit capabilities, and related disciplines."/><div class="mt-14 grid gap-x-8 md:grid-cols-2">{services.map((s,index) => <div class="pt-2"><ServiceCard number={`${String(index+1).padStart(2,'0')}`} title={s.data.title} description={s.data.description} href={`/services/${s.id}`} /></div>)}</div></div></section>
+<section class="bg-black-950 text-black-50 py-20 lg:py-28"><div class="container-wide"><SectionIntro eyebrow="Service catalog / 02" title="Design, implementation, configuration, support" body="Use the service pages as structured building blocks: shared layout, typed data, explicit capabilities, and related disciplines."/><div class="mt-14 grid gap-x-8 md:grid-cols-2">{services.map((s,index) => <div class="pt-2"><ServiceCard number={`${String(index+1).padStart(2,'0')}`} title={s.data.title} description={s.data.description} href={path(`/services/${s.id}`)} /></div>)}</div></div></section>
 </SiteLayout>

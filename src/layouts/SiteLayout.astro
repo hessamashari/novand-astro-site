@@ -1,32 +1,65 @@
 ---
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import SEO from '../components/seo/SEO.astro';
+import { path } from '../data/site';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description: string;
   canonical?: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  section?: string;
+  tags?: string[];
+  noindex?: boolean;
   light?: boolean;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
 }
-const { title, description, canonical, light = false } = Astro.props;
-const site = 'https://example.com';
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site).toString();
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  imageAlt,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  section,
+  tags,
+  noindex = false,
+  light = false,
+  jsonLd,
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:site_name" content="Novand" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={path('/favicon.svg')} />
+    <link rel="apple-touch-icon" href={path('/favicon.svg')} />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      imageAlt={imageAlt}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      section={section}
+      tags={tags}
+      noindex={noindex}
+      light={light}
+      jsonLd={jsonLd}
+    />
   </head>
   <body class={light ? 'bg-khaki-50 text-black-950' : 'bg-black-950 text-black-50'}>
     <Header light={light} />

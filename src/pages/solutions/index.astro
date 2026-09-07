@@ -2,9 +2,14 @@
 import { getCollection } from 'astro:content';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import Icon from '../../components/ui/Icon.astro';
+import { path } from '../../data/site';
 const solutions = await getCollection('solutions');
 ---
-<SiteLayout title="Solutions — Novand" description="Technology solutions organized by environment: business, education, residential, healthcare and hospitality, and specialized facilities." light>
+<SiteLayout
+  title="Solutions by Environment — Novand"
+  description="Explore Novand's technology systems engineered for business, education, luxury residential, healthcare, hospitality, and specialized facilities."
+  light
+>
 <section class="bg-khaki-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><p class="eyebrow text-black-950/45">Solutions / 01</p><h1 class="h1 mt-6 max-w-5xl">Architecture shaped by the environment.</h1><p class="body-lg mt-7 max-w-3xl text-black-950/65">Technology disciplines stay consistent; priorities, constraints, and integration patterns change with the space.</p></div></section>
-<section class="bg-black-950 text-black-50 py-20 lg:py-28"><div class="container-wide grid gap-px bg-white/10 md:grid-cols-2">{solutions.map((s) => <a href={`/solutions/${s.id}`} class="group bg-black-950 min-h-80 p-7 sm:p-8 hover:bg-white/[.03] transition-colors"><div class="flex justify-between"><span class="eyebrow text-white/40">{s.data.eyebrow}</span><Icon name="arrow" class="size-4 text-white/35 group-hover:translate-x-1 transition-transform"/></div><h2 class="h3 mt-20 max-w-lg">{s.data.title}</h2><p class="mt-4 max-w-lg text-sm leading-6 text-white/55">{s.data.description}</p></a>)}</div></section>
+<section class="bg-black-950 text-black-50 py-20 lg:py-28"><div class="container-wide grid gap-px bg-white/10 md:grid-cols-2">{solutions.map((s) => <a href={path(`/solutions/${s.id}`)} class="group bg-black-950 min-h-80 p-7 sm:p-8 hover:bg-white/[.03] transition-colors"><div class="flex justify-between"><span class="eyebrow text-white/40">{s.data.eyebrow}</span><Icon name="arrow" class="size-4 text-white/35 group-hover:translate-x-1 transition-transform"/></div><h2 class="h3 mt-20 max-w-lg">{s.data.title}</h2><p class="mt-4 max-w-lg text-sm leading-6 text-white/55">{s.data.description}</p></a>)}</div></section>
 </SiteLayout>

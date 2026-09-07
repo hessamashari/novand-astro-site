@@ -1,0 +1,6 @@
+{
+  "name": "Novand",
+  "description": "Integrated technology engineering and infrastructure partner website",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

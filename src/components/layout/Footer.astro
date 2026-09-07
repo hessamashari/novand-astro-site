@@ -1,33 +1,56 @@
 ---
-import { company } from '../../data/site';
+import { company, navigation, path } from '../../data/site';
+
+interface Props {
+  light?: boolean;
+}
+
 const { light = false } = Astro.props;
 const border = light ? 'border-black-950/15' : 'border-black-50/15';
 const muted = light ? 'text-black-950/60' : 'text-black-50/60';
-const href = light ? 'hover:text-black-950' : 'hover:text-black-50';
+const href = light ? 'hover:text-black-950 transition-colors' : 'hover:text-black-50 transition-colors';
 ---
-<footer class={`border-t ${border}`}>
+<footer id="site-footer" class={`border-t ${border}`}>
   <div class="container-wide py-14 lg:py-18">
     <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
       <div>
-        <a href="/" class="text-sm font-bold tracking-[0.22em] uppercase">Novand</a>
+        <a id="footer-logo" href={path('/')} class="text-sm font-bold tracking-[0.22em] uppercase">Novand</a>
         <p class={`mt-5 max-w-xs text-sm leading-6 ${muted}`}>Integrated technology engineering and infrastructure systems, designed as one coherent environment.</p>
       </div>
       <div>
         <p class="eyebrow">Company</p>
-        <div class={`mt-5 grid gap-2 text-sm ${muted}`}><a class={href} href="/about">About</a><a class={href} href="/consulting">Our Approach</a><a class={href} href="/projects">Projects</a></div>
+        <div class={`mt-5 grid gap-2 text-sm ${muted}`}>
+          <a class={href} href={path('/about')}>About Novand</a>
+          <a class={href} href={path('/consulting')}>Technical Consulting</a>
+          <a class={href} href={path('/solutions')}>Solutions Catalog</a>
+          <a class={href} href={path('/projects')}>Case Studies & Projects</a>
+          <a class={href} href={path('/contact')}>Contact & Consultations</a>
+        </div>
       </div>
       <div>
         <p class="eyebrow">Services</p>
-        <div class={`mt-5 grid gap-2 text-sm ${muted}`}><a class={href} href="/services">Networking & IT</a><a class={href} href="/services">Enterprise Services</a><a class={href} href="/services">Infrastructure Administration</a><a class={href} href="/services">Smart Technology</a><a class={href} href="/services">Security & Surveillance</a><a class={href} href="/services">Technical Support</a></div>
+        <div class={`mt-5 grid gap-2 text-sm ${muted}`}>
+          {navigation.services.map((item) => (
+            <a class={href} href={item.href}>{item.label}</a>
+          ))}
+        </div>
       </div>
       <div>
-        <p class="eyebrow">Contact</p>
-        <div class={`mt-5 grid gap-2 text-sm ${muted}`}><span>{company.phone}</span><span>{company.email}</span><span>{company.address}</span><span>{company.hours}</span></div>
+        <p class="eyebrow">Contact & Inquiries</p>
+        <div class={`mt-5 grid gap-2.5 text-sm ${muted}`}>
+          <a class={href} href={`mailto:${company.email}`}>{company.email}</a>
+          <a class={href} href={`tel:${company.phone.replace(/[^+\d]/g, '')}`}>{company.phone}</a>
+          <span>{company.address}</span>
+          <span>{company.hours}</span>
+        </div>
       </div>
     </div>
     <div class={`mt-14 flex flex-col gap-4 border-t pt-6 text-xs md:flex-row md:items-center md:justify-between ${border} ${muted}`}>
       <span>© {new Date().getFullYear()} Novand. All rights reserved.</span>
-      <div class="flex gap-5"><a class={href} href="#">Privacy Policy</a><a class={href} href="#">Terms</a></div>
+      <div class="flex gap-5">
+        <a class={href} href={path('/about')}>Ethical Engineering Principles</a>
+        <a class={href} href={path('/contact')}>Client Support Inquiries</a>
+      </div>
     </div>
   </div>
 </footer>
