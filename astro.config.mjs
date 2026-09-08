@@ -29,5 +29,10 @@ export default defineConfig({
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@formspree/ajax': '@formspree/ajax/dist/index.mjs',
+      },
+    },
   },
 });

@@ -1,15 +1,147 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionIntro from '../components/sections/SectionIntro.astro';
+import ConsultationForm from '../components/forms/ConsultationForm.astro';
 import Icon from '../components/ui/Icon.astro';
-import { path } from '../data/site';
+import { path, company } from '../data/site';
 ---
 <SiteLayout
   title="Technical Consulting & Infrastructure Advisory — Novand"
   description="Expert technical advisory and procurement consulting for enterprise networking, server systems, security architectures, and automation hardware."
   light
 >
-<section class="bg-khaki-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><p class="eyebrow text-black-950/45">Consulting / 01</p><h1 class="h1 mt-6 max-w-5xl">Need help choosing the right equipment?</h1><p class="body-lg mt-7 max-w-3xl text-black-950/65">Use Novand as a technical advisor when equipment selection, compatibility, architecture, and procurement decisions need more structure.</p></div></section>
-<section class="bg-black-950 text-black-50 py-20 lg:py-28"><div class="container-wide"><SectionIntro eyebrow="Advisory scope / 02" title="Start with the system, not the shopping list." body="The right equipment depends on the architecture, environment, constraints, and operational goals around it."/><div class="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{['Networking equipment','Servers & infrastructure','Security systems','Automation & smart technology'].map((x,i)=><div class="border border-white/12 p-6"><span class="eyebrow text-white/35">0{i+1}</span><p class="mt-16 text-lg font-semibold">{x}</p></div>)}</div></div></section>
-<section class="bg-black-950 text-black-50 py-20 lg:py-24 border-t border-white/10"><div class="container-wide"><div class="flex flex-col gap-7 sm:flex-row sm:items-end sm:justify-between"><div><p class="eyebrow text-white/45">Next step</p><h2 class="h2 mt-4">Bring the requirements. We will help structure the decision.</h2></div><a href={path('/contact')} class="inline-flex items-center gap-3 border border-white/70 px-5 py-3.5 text-sm font-semibold hover:bg-white hover:text-black-950 transition-colors">Request a Consultation <Icon name="arrow" class="size-4"/></a></div></div></section>
+  <!-- Hero -->
+  <section class="bg-khaki-50 text-black-950 py-20 lg:py-28">
+    <div class="container-wide">
+      <p class="eyebrow text-black-950/45">Consulting / 01</p>
+      <h1 class="h1 mt-6 max-w-5xl">Need help choosing the right equipment?</h1>
+      <p class="body-lg mt-7 max-w-3xl text-black-950/65">
+        Use Novand as a technical advisor when equipment selection, compatibility, architecture, and procurement decisions need rigorous engineering structure.
+      </p>
+    </div>
+  </section>
+
+  <!-- Advisory Scope -->
+  <section class="bg-black-950 text-black-50 py-20 lg:py-28">
+    <div class="container-wide">
+      <SectionIntro
+        eyebrow="Advisory scope / 02"
+        title="Start with the system, not the shopping list."
+        body="The right equipment depends on the architecture, physical environment, thermal constraints, throughput budgets, and operational lifecycle."
+      />
+      <div class="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {[
+          {
+            title: 'Networking equipment',
+            desc: 'Core/aggregation switching, multi-gigabit routing, Wi-Fi 6E/7 site density, and fiber backbones.',
+          },
+          {
+            title: 'Servers & infrastructure',
+            desc: 'Proxmox/VMware virtualization nodes, Ceph/TrueNAS storage clusters, and remote IPMI management.',
+          },
+          {
+            title: 'Security systems',
+            desc: 'ONVIF-compliant IP cameras, NVR storage sizing, Wiegand/OSDP access control, and edge optics.',
+          },
+          {
+            title: 'Automation & smart technology',
+            desc: 'KNX, Zigbee, and MQTT field controllers, energy metering, and unified building management integration.',
+          },
+        ].map((x, i) => (
+          <div class="border border-white/12 p-6 flex flex-col justify-between">
+            <div>
+              <span class="eyebrow text-white/35">0{i + 1}</span>
+              <p class="mt-6 text-lg font-semibold text-white">{x.title}</p>
+              <p class="mt-3 text-xs leading-relaxed text-white/60">{x.desc}</p>
+            </div>
+            <div class="mt-8 border-t border-white/10 pt-4 text-[0.7rem] uppercase tracking-wider text-emerald-400">
+              Vendor-Neutral Analysis
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Advisory Process -->
+  <section class="bg-khaki-100 text-black-950 py-20 lg:py-24 border-y border-black-950/10">
+    <div class="container-wide">
+      <SectionIntro
+        eyebrow="Engagement methodology / 03"
+        title="How our technical advisory engagements run."
+        body="We conduct independent evaluations free from distributor quotas, ensuring your investment is sized for stability and scalability."
+      />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <div class="border border-black-950/12 bg-white/70 p-7">
+          <span class="eyebrow text-black-950/40">Phase A</span>
+          <h3 class="mt-3 text-base font-bold text-black-950">Site & Constraint Audit</h3>
+          <p class="mt-3 text-xs leading-relaxed text-black-950/70">
+            Physical pathing, power availability, thermal loads, existing legacy hardware compatibility, and expected bandwidth ceilings.
+          </p>
+        </div>
+        <div class="border border-black-950/12 bg-white/70 p-7">
+          <span class="eyebrow text-black-950/40">Phase B</span>
+          <h3 class="mt-3 text-base font-bold text-black-950">Vendor-Neutral BOM & Scoping</h3>
+          <p class="mt-3 text-xs leading-relaxed text-black-950/70">
+            Detailed Bill of Materials (BOM) with performance benchmarks, alternative tier options, and long-term firmware support viability.
+          </p>
+        </div>
+        <div class="border border-black-950/12 bg-white/70 p-7">
+          <span class="eyebrow text-black-950/40">Phase C</span>
+          <h3 class="mt-3 text-base font-bold text-black-950">Procurement & Staging Blueprint</h3>
+          <p class="mt-3 text-xs leading-relaxed text-black-950/70">
+            Pre-configuration topologies, VLAN schematics, rack elevation diagrams, and implementation oversight timelines.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultation Form Section -->
+  <section id="consultation-form-section" class="bg-black-950 text-black-50 py-20 lg:py-28">
+    <div class="container-wide grid gap-14 lg:grid-cols-[.75fr_1.25fr]">
+      <aside>
+        <p class="eyebrow text-white/40">Technical Advisory / 04</p>
+        <h2 class="h2 mt-4 text-white">Bring the requirements. We will help structure the decision.</h2>
+        <p class="mt-6 text-sm leading-6 text-white/70">
+          Submit your project overview or equipment dilemmas. An advisory engineer will analyze your parameters and schedule a direct technical scoping session.
+        </p>
+
+        <div class="mt-8 border border-white/12 bg-jet-950 p-6">
+          <p class="text-xs uppercase tracking-wider text-white/40 font-mono">Advisory Coverage</p>
+          <ul class="mt-4 grid gap-2.5 text-xs text-white/80">
+            <li class="flex items-center gap-2">
+              <span class="size-1.5 rounded-full bg-emerald-400"></span>
+              Independent, vendor-neutral hardware analysis
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="size-1.5 rounded-full bg-emerald-400"></span>
+              Thermal, power, and rack space calculations
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="size-1.5 rounded-full bg-emerald-400"></span>
+              BOM verification before purchase commitment
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="size-1.5 rounded-full bg-emerald-400"></span>
+              Submissions securely processed via Formspree
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 text-xs text-white/45">
+          Prefer email? Reach us at <a href={`mailto:${company.email}`} class="underline hover:text-white text-white/70">{company.email}</a>
+        </div>
+      </aside>
+
+      <div>
+        <ConsultationForm
+          formId="consulting-request-form"
+          sourcePage="Consulting Page"
+          subject="New Equipment & Advisory Consultation Request — Novand"
+          defaultProjectType="hardware-support"
+        />
+      </div>
+    </div>
+  </section>
 </SiteLayout>

@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import Icon from '../components/ui/Icon.astro';
+import ConsultationForm from '../components/forms/ConsultationForm.astro';
 import { company } from '../data/site';
 ---
 <SiteLayout
@@ -66,115 +67,13 @@ import { company } from '../data/site';
     </aside>
 
     <div id="contact-form-container">
-      <div id="form-success-banner" class="hidden border border-white/20 bg-white/[0.03] p-8 text-left">
-        <div class="flex items-center gap-3">
-          <span class="size-2 rounded-full bg-emerald-400"></span>
-          <p class="eyebrow text-emerald-400">Consultation Request Received</p>
-        </div>
-        <h3 class="h3 mt-4 text-white">Thank you for outlining your environment.</h3>
-        <p class="mt-4 text-sm leading-6 text-white/70">
-          Our engineering team has received your project parameters. A technical advisor will review the constraints and follow up within one business day with relevant scoping details.
-        </p>
-        <div class="mt-6 border-t border-white/10 pt-4 flex flex-wrap gap-4 items-center justify-between text-xs text-white/60">
-          <span id="ticket-reference-text">Reference: NOV-8201</span>
-          <button id="reset-form-btn" type="button" class="underline hover:text-white transition-colors">
-            Submit another inquiry
-          </button>
-        </div>
-      </div>
-
-      <form id="consultation-form" class="grid gap-5">
-        <div class="grid gap-5 sm:grid-cols-2">
-          <label class="grid gap-2 text-sm">
-            <span>Name <span class="text-white/40">*</span></span>
-            <input id="input-name" required name="name" autocomplete="name" placeholder="Full name or lead engineer" class="min-h-12 border border-white/15 bg-white/[.03] px-4 outline-none focus:border-white/60 text-white" />
-          </label>
-          <label class="grid gap-2 text-sm">
-            <span>Company / Organization</span>
-            <input id="input-company" name="company" autocomplete="organization" placeholder="Facility or business name" class="min-h-12 border border-white/15 bg-white/[.03] px-4 outline-none focus:border-white/60 text-white" />
-          </label>
-        </div>
-
-        <div class="grid gap-5 sm:grid-cols-2">
-          <label class="grid gap-2 text-sm">
-            <span>Email <span class="text-white/40">*</span></span>
-            <input id="input-email" required type="email" name="email" autocomplete="email" placeholder="contact@domain.com" class="min-h-12 border border-white/15 bg-white/[.03] px-4 outline-none focus:border-white/60 text-white" />
-          </label>
-          <label class="grid gap-2 text-sm">
-            <span>Phone</span>
-            <input id="input-phone" name="phone" autocomplete="tel" placeholder="+1 (555) 000-0000" class="min-h-12 border border-white/15 bg-white/[.03] px-4 outline-none focus:border-white/60 text-white" />
-          </label>
-        </div>
-
-        <label class="grid gap-2 text-sm">
-          <span>Primary Discipline / Focus</span>
-          <select id="select-project-type" name="project-type" class="min-h-12 border border-white/15 bg-jet-950 px-4 outline-none focus:border-white/60 text-white">
-            <option value="network-infrastructure">Network Infrastructure & IT</option>
-            <option value="enterprise-services">Enterprise & Network Services</option>
-            <option value="infrastructure-administration">Linux & Infrastructure Administration</option>
-            <option value="smart-homes-buildings">Smart Homes & Buildings Automation</option>
-            <option value="security-surveillance">Security & Surveillance (CCTV / Access)</option>
-            <option value="audio-power">Audio, Power & Integrated Systems</option>
-            <option value="hardware-support">Hardware & Equipment Procurement Consulting</option>
-            <option value="other">Multi-Layer / Other Facility Integration</option>
-          </select>
-        </label>
-
-        <label class="grid gap-2 text-sm">
-          <span>Project & System Constraints <span class="text-white/40">*</span></span>
-          <textarea id="input-message" required name="message" rows="6" placeholder="Describe the physical space, existing hardware, reliability issues, or specific objectives..." class="border border-white/15 bg-white/[.03] p-4 outline-none focus:border-white/60 text-white leading-relaxed"></textarea>
-        </label>
-
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between pt-2">
-          <p class="text-xs leading-5 text-white/40 max-w-sm">
-            Direct communications are kept confidential and handled strictly by Novand systems engineers.
-          </p>
-          <button id="submit-request-button" type="submit" class="inline-flex shrink-0 items-center justify-center gap-3 border border-white/70 px-6 py-3.5 text-sm font-semibold hover:bg-white hover:text-black-950 transition-colors">
-            <span>Send Request</span>
-            <Icon name="arrow" class="size-4" />
-          </button>
-        </div>
-      </form>
+      <ConsultationForm
+        formId="contact-consultation-form"
+        sourcePage="Contact Page"
+        subject="New Contact & Consultation Inquiry — Novand"
+        defaultProjectType="network-infrastructure"
+      />
     </div>
   </div>
 </section>
-
-<script>
-  const form = document.getElementById('consultation-form') as HTMLFormElement | null;
-  const successBanner = document.getElementById('form-success-banner');
-  const resetBtn = document.getElementById('reset-form-btn');
-  const submitBtn = document.getElementById('submit-request-button');
-  const refText = document.getElementById('ticket-reference-text');
-
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!form || !successBanner) return;
-
-    if (submitBtn) {
-      submitBtn.setAttribute('disabled', 'true');
-      submitBtn.textContent = 'Transmitting...';
-    }
-
-    setTimeout(() => {
-      const randomRef = 'NOV-' + Math.floor(1000 + Math.random() * 9000);
-      if (refText) {
-        refText.textContent = `Inquiry Reference: ${randomRef}`;
-      }
-      form.classList.add('hidden');
-      successBanner.classList.remove('hidden');
-
-      if (submitBtn) {
-        submitBtn.removeAttribute('disabled');
-        submitBtn.innerHTML = '<span>Send Request</span>';
-      }
-    }, 450);
-  });
-
-  resetBtn?.addEventListener('click', () => {
-    if (!form || !successBanner) return;
-    form.reset();
-    successBanner.classList.add('hidden');
-    form.classList.remove('hidden');
-  });
-</script>
 </SiteLayout>

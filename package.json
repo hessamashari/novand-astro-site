@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "latest",
+    "@formspree/ajax": "^1.1.5",
+    "@tailwindcss/vite": "latest",
     "astro": "latest",
     "tailwindcss": "latest",
-    "@tailwindcss/vite": "latest",
     "zod": "latest"
   }
 }
