@@ -1037,7 +1037,159 @@ async function exportAll() {
     .png({ quality: 100 })
     .toFile(path.join(outputDir, 'novand-instagram-story-persian-light.png'));
 
-  console.log('✅ All brand, Instagram, and Persian captioned assets successfully exported to public/brand/!');
+  // 11. Multi-Format Browser Tab Favicons & Web Icons
+  const publicDir = path.resolve('public');
+  const favAdaptiveSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 112 112" fill="none">
+  <defs>
+    <linearGradient id="fav-circuit-gradient" x1="20%" y1="100%" x2="90%" y2="20%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="45%" stop-color="#0EA5E9" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+  </defs>
+  <style>
+    :root {
+      --house: #0F172A;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --house: #FFFFFF;
+      }
+    }
+    .brand-frame {
+      stroke: var(--house);
+    }
+    .brand-pane {
+      fill: var(--house);
+    }
+  </style>
+  <path
+    class="brand-frame"
+    d="M 85 42 L 50 18 L 19 42 L 19 70 L 48 70"
+    stroke="#0F172A"
+    stroke-width="6.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <rect class="brand-pane" x="42.5" y="38.5" width="6.5" height="6.5" rx="1" fill="#0F172A" />
+  <rect class="brand-pane" x="51.5" y="38.5" width="6.5" height="6.5" rx="1" fill="#0F172A" />
+  <rect class="brand-pane" x="42.5" y="47.5" width="6.5" height="6.5" rx="1" fill="#0F172A" />
+  <rect class="brand-pane" x="51.5" y="47.5" width="6.5" height="6.5" rx="1" fill="#0F172A" />
+  <path
+    d="M 29 77 L 55 77 L 76.5 51 L 78 51"
+    stroke="url(#fav-circuit-gradient)"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="81.5" cy="51" r="4.2" stroke="url(#fav-circuit-gradient)" stroke-width="2.8" fill="none" />
+  <path
+    d="M 44 84 L 60 84 L 74.5 68 L 78 68"
+    stroke="url(#fav-circuit-gradient)"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="81.5" cy="68" r="4.2" stroke="url(#fav-circuit-gradient)" stroke-width="2.8" fill="none" />
+  <path
+    d="M 60 91 L 68 91 L 76 82.5 L 78 82.5"
+    stroke="url(#fav-circuit-gradient)"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="81.5" cy="82.5" r="4.2" stroke="url(#fav-circuit-gradient)" stroke-width="2.8" fill="none" />
+</svg>`;
+
+  fs.writeFileSync(path.join(publicDir, 'favicon.svg'), favAdaptiveSvg);
+
+  // High-contrast squircle badge for PNG and ICO
+  const badgeSvg = `<svg width="512" height="512" viewBox="-16 -16 132 132" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <defs>
+      <linearGradient id="icoGrad" x1="20%" y1="100%" x2="90%" y2="20%">
+        <stop offset="0%" stop-color="#06B6D4" />
+        <stop offset="45%" stop-color="#0EA5E9" />
+        <stop offset="100%" stop-color="#10B981" />
+      </linearGradient>
+    </defs>
+    <rect x="-16" y="-16" width="132" height="132" rx="28" fill="#0B0F19" />
+    <path
+      d="M 85 42 L 50 18 L 19 42 L 19 70 L 48 70"
+      stroke="#FFFFFF"
+      stroke-width="6.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <rect x="42.5" y="38.5" width="6.5" height="6.5" rx="1" fill="#FFFFFF" />
+    <rect x="51.5" y="38.5" width="6.5" height="6.5" rx="1" fill="#FFFFFF" />
+    <rect x="42.5" y="47.5" width="6.5" height="6.5" rx="1" fill="#FFFFFF" />
+    <rect x="51.5" y="47.5" width="6.5" height="6.5" rx="1" fill="#FFFFFF" />
+    <path
+      d="M 29 77 L 55 77 L 76.5 51 L 78 51"
+      stroke="url(#icoGrad)"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle cx="81.5" cy="51" r="4.2" stroke="url(#icoGrad)" stroke-width="2.8" fill="none" />
+    <path
+      d="M 44 84 L 60 84 L 74.5 68 L 78 68"
+      stroke="url(#icoGrad)"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle cx="81.5" cy="68" r="4.2" stroke="url(#icoGrad)" stroke-width="2.8" fill="none" />
+    <path
+      d="M 60 91 L 68 91 L 76 82.5 L 78 82.5"
+      stroke="url(#icoGrad)"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle cx="81.5" cy="82.5" r="4.2" stroke="url(#icoGrad)" stroke-width="2.8" fill="none" />
+  </svg>`;
+
+  const p16 = await sharp(Buffer.from(badgeSvg)).resize(16, 16).png().toBuffer();
+  const p32 = await sharp(Buffer.from(badgeSvg)).resize(32, 32).png().toBuffer();
+  const p48 = await sharp(Buffer.from(badgeSvg)).resize(48, 48).png().toBuffer();
+  const p180 = await sharp(Buffer.from(badgeSvg)).resize(180, 180).png().toBuffer();
+
+  fs.writeFileSync(path.join(publicDir, 'favicon-16x16.png'), p16);
+  fs.writeFileSync(path.join(publicDir, 'favicon-32x32.png'), p32);
+  fs.writeFileSync(path.join(publicDir, 'apple-touch-icon.png'), p180);
+
+  function buildIco(entries) {
+    const header = Buffer.alloc(6);
+    header.writeUInt16LE(0, 0);
+    header.writeUInt16LE(1, 2);
+    header.writeUInt16LE(entries.length, 4);
+    const dirEntries = [];
+    let offset = 6 + entries.length * 16;
+    for (const { buffer, width, height } of entries) {
+      const entry = Buffer.alloc(16);
+      entry.writeUInt8(width >= 256 ? 0 : width, 0);
+      entry.writeUInt8(height >= 256 ? 0 : height, 1);
+      entry.writeUInt8(0, 2);
+      entry.writeUInt8(0, 3);
+      entry.writeUInt16LE(1, 4);
+      entry.writeUInt16LE(32, 6);
+      entry.writeUInt32LE(buffer.length, 8);
+      entry.writeUInt32LE(offset, 12);
+      dirEntries.push(entry);
+      offset += buffer.length;
+    }
+    return Buffer.concat([header, ...dirEntries, ...entries.map(e => e.buffer)]);
+  }
+
+  const icoBuf = buildIco([
+    { buffer: p16, width: 16, height: 16 },
+    { buffer: p32, width: 32, height: 32 },
+    { buffer: p48, width: 48, height: 48 },
+  ]);
+  fs.writeFileSync(path.join(publicDir, 'favicon.ico'), icoBuf);
+
+  console.log('✅ All brand, Instagram, Persian captioned assets, and favicons successfully exported!');
 }
 
 exportAll().catch(err => {

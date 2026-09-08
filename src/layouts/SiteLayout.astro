@@ -42,8 +42,14 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href={path('/favicon.svg')} />
-    <link rel="apple-touch-icon" href={path('/favicon.svg')} />
+    <!-- Favicon & Browser Tab Icons -->
+    <link rel="icon" type="image/svg+xml" href={path('/favicon.svg?v=3')} />
+    <link rel="icon" type="image/png" sizes="32x32" href={path('/favicon-32x32.png?v=3')} />
+    <link rel="icon" type="image/png" sizes="16x16" href={path('/favicon-16x16.png?v=3')} />
+    <link rel="shortcut icon" href={path('/favicon.ico?v=3')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={path('/apple-touch-icon.png?v=3')} />
+    <link rel="manifest" href={path('/site.webmanifest')} />
+    <meta name="theme-color" content="#0B0F19" />
 
     <SEO
       title={title}
