@@ -1,56 +1,125 @@
 ---
 import { company, navigation, path } from '../../data/site';
+import Icon from '../ui/Icon.astro';
 
 interface Props {
   light?: boolean;
 }
 
 const { light = false } = Astro.props;
-const border = light ? 'border-black-950/15' : 'border-black-50/15';
-const muted = light ? 'text-black-950/60' : 'text-black-50/60';
-const href = light ? 'hover:text-black-950 transition-colors' : 'hover:text-black-50 transition-colors';
 ---
-<footer id="site-footer" class={`border-t ${border}`}>
-  <div class="container-wide py-14 lg:py-18">
-    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-      <div>
-        <a id="footer-logo" href={path('/')} class="text-sm font-bold tracking-[0.22em] uppercase">Novand</a>
-        <p class={`mt-5 max-w-xs text-sm leading-6 ${muted}`}>Integrated technology engineering and infrastructure systems, designed as one coherent environment.</p>
-      </div>
-      <div>
-        <p class="eyebrow">Company</p>
-        <div class={`mt-5 grid gap-2 text-sm ${muted}`}>
-          <a class={href} href={path('/about')}>About Novand</a>
-          <a class={href} href={path('/consulting')}>Technical Consulting</a>
-          <a class={href} href={path('/solutions')}>Solutions Catalog</a>
-          <a class={href} href={path('/projects')}>Case Studies & Projects</a>
-          <a class={href} href={path('/contact')}>Contact & Consultations</a>
+<footer id="site-footer" class="border-t border-white/10 bg-black-950 text-black-50" aria-label="Site footer">
+  <div class="container-wide py-14 lg:py-20">
+    <!-- Top Grid: Brand + Navigation Pillars -->
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-12">
+      <!-- Col 1: Brand & Operational Scope (4 cols on lg) -->
+      <div class="lg:col-span-4">
+        <a id="footer-logo" href={path('/')} class="inline-flex items-center gap-3 group" aria-label="Novand home">
+          <span class="grid size-8 place-items-center border border-white/25 group-hover:border-white/70 transition-colors" aria-hidden="true">
+            <span class="size-2 bg-white"></span>
+          </span>
+          <span class="text-sm font-bold tracking-[0.22em] uppercase text-white">Novand</span>
+        </a>
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
+          Integrated technology engineering and infrastructure systems, designed as one coherent environment. We bridge networking, security, automation, and systems administration.
+        </p>
+        
+        <div class="mt-6 flex flex-col gap-2.5">
+          <div class="inline-flex items-center gap-2 text-xs text-white/55">
+            <span class="size-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
+            <span>Active Engineering & Advisory Operations</span>
+          </div>
+          <p class="text-xs text-white/40">Field deployments & remote technical advisory</p>
+        </div>
+
+        <div class="mt-7">
+          <a
+            id="footer-cta-link"
+            href={path('/contact')}
+            class="inline-flex items-center gap-2.5 border border-white/20 px-4 py-2 text-xs font-semibold text-white/85 hover:border-white/60 hover:text-white hover:bg-white/[0.04] transition-colors"
+          >
+            <span>Request a Consultation</span>
+            <Icon name="arrow" class="size-3.5" />
+          </a>
         </div>
       </div>
-      <div>
-        <p class="eyebrow">Services</p>
-        <div class={`mt-5 grid gap-2 text-sm ${muted}`}>
+
+      <!-- Col 2: Services Disciplines (3 cols on lg) -->
+      <div class="lg:col-span-3">
+        <p class="eyebrow text-white/45">Engineering Services</p>
+        <div class="mt-5 grid gap-2.5 text-sm text-white/65">
           {navigation.services.map((item) => (
-            <a class={href} href={item.href}>{item.label}</a>
+            <a class="hover:text-white transition-colors" href={item.href}>
+              {item.label}
+            </a>
           ))}
         </div>
       </div>
-      <div>
-        <p class="eyebrow">Contact & Inquiries</p>
-        <div class={`mt-5 grid gap-2.5 text-sm ${muted}`}>
-          <a class={href} href={`mailto:${company.email}`}>{company.email}</a>
-          <a class={href} href={`tel:${company.phone.replace(/[^+\d]/g, '')}`}>{company.phone}</a>
-          <span>{company.address}</span>
-          <span>{company.hours}</span>
+
+      <!-- Col 3: Environment Solutions (3 cols on lg) -->
+      <div class="lg:col-span-3">
+        <p class="eyebrow text-white/45">Solutions & Environments</p>
+        <div class="mt-5 grid gap-2.5 text-sm text-white/65">
+          {navigation.solutions.map((item) => (
+            <a class="hover:text-white transition-colors" href={item.href}>
+              {item.label}
+            </a>
+          ))}
+          <a class="hover:text-white text-white/40 pt-1 text-xs uppercase tracking-wider inline-flex items-center gap-1.5" href={path('/solutions')}>
+            <span>View all environments</span>
+            <Icon name="arrow" class="size-3" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 4: Company & Contact (2 cols on lg) -->
+      <div class="lg:col-span-2">
+        <p class="eyebrow text-white/45">Company</p>
+        <div class="mt-5 grid gap-2.5 text-sm text-white/65">
+          <a class="hover:text-white transition-colors" href={path('/about')}>About Novand</a>
+          <a class="hover:text-white transition-colors" href={path('/consulting')}>Technical Advisory</a>
+          <a class="hover:text-white transition-colors" href={path('/projects')}>Projects & Case Studies</a>
+          <a class="hover:text-white transition-colors" href={path('/contact')}>Contact & Inquiries</a>
+        </div>
+
+        <p class="eyebrow text-white/45 mt-8">Direct Inquiries</p>
+        <div class="mt-4 grid gap-2 text-xs text-white/65">
+          <a class="hover:text-white transition-colors font-mono" href={`mailto:${company.email}`}>
+            {company.email}
+          </a>
+          <span class="text-white/40">{company.hours}</span>
         </div>
       </div>
     </div>
-    <div class={`mt-14 flex flex-col gap-4 border-t pt-6 text-xs md:flex-row md:items-center md:justify-between ${border} ${muted}`}>
-      <span>© {new Date().getFullYear()} Novand. All rights reserved.</span>
-      <div class="flex gap-5">
-        <a class={href} href={path('/about')}>Ethical Engineering Principles</a>
-        <a class={href} href={path('/contact')}>Client Support Inquiries</a>
+
+    <!-- Bottom Bar -->
+    <div class="mt-14 flex flex-col gap-4 border-t border-white/10 pt-7 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <span>© {new Date().getFullYear()} Novand. All rights reserved.</span>
+        <span class="hidden sm:inline text-white/20">|</span>
+        <span>Infrastructure, Security & Automation Engineering</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a class="hover:text-white transition-colors" href={path('/about')}>Engineering Principles</a>
+        <a class="hover:text-white transition-colors" href={path('/contact')}>Inquiries</a>
+        <button
+          id="footer-back-to-top"
+          type="button"
+          class="inline-flex items-center gap-1.5 text-xs text-white/45 hover:text-white transition-colors cursor-pointer border border-white/10 px-2.5 py-1"
+          aria-label="Scroll to top of page"
+        >
+          <span>Top</span>
+          <span aria-hidden="true">↑</span>
+        </button>
       </div>
     </div>
   </div>
 </footer>
+
+<script>
+  const backToTopBtn = document.getElementById('footer-back-to-top');
+  backToTopBtn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
