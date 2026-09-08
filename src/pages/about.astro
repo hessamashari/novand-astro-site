@@ -11,6 +11,25 @@ import { path } from '../data/site';
 >
 <section class="bg-khaki-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><p class="eyebrow text-black-950/45">About / 01</p><h1 class="h1 mt-6 max-w-5xl">An engineering partner for systems that need to work together.</h1><p class="body-lg mt-8 max-w-3xl text-black-950/65">Novand provides the design, implementation, configuration, and support of integrated technology infrastructure across networking, security, automation, smart environments, and related systems.</p></div></section>
 <section class="bg-black-950 text-black-50 py-20 lg:py-28"><div class="container-wide grid gap-12 lg:grid-cols-2 lg:items-start"><SectionIntro eyebrow="Positioning / 02" title="From disconnected technologies to a coherent environment" body="The company is positioned around integration: the technical layers should complement each other, be documented, and remain understandable to the people who operate them."/><div class="border border-white/12 p-7"><div class="grid gap-4">{['Infrastructure','Network','Security','Automation','Smart Technology','Support'].map((x,i)=><div class="flex items-center justify-between border-b border-white/10 py-4 last:border-0"><span class="text-sm">{x}</span><span class="eyebrow text-white/35">0{i+1}</span></div>)}</div></div></div></section>
-<section class="bg-almond-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><SectionIntro eyebrow="Principles / 03" title="Precision without theater" body="The visual and editorial language deliberately avoids generic corporate claims. The focus stays on architecture, reliability, security, integration, and practical delivery." light/><div class="mt-12 grid gap-4 md:grid-cols-3"><div class="border border-black-950/15 p-6"><p class="eyebrow">01</p><h3 class="mt-14 h3">Technical clarity</h3><p class="mt-4 text-sm leading-6 text-black-950/60">Prefer direct language, explicit boundaries, and useful documentation.</p></div><div class="border border-black-950/15 p-6"><p class="eyebrow">02</p><h3 class="mt-14 h3">System thinking</h3><p class="mt-4 text-sm leading-6 text-black-950/60">Consider dependencies between infrastructure, security, automation, and use.</p></div><div class="border border-black-950/15 p-6"><p class="eyebrow">03</p><h3 class="mt-14 h3">Long-term support</h3><p class="mt-4 text-sm leading-6 text-black-950/60">A successful implementation should still make sense after handover.</p></div></div></div></section>
-<section class="bg-black-950 text-black-50 py-20"><div class="container-wide flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"><div><p class="eyebrow text-white/45">Next</p><h2 class="h2 mt-4">Explore the service architecture.</h2></div><a href={path('/services')} class="inline-flex items-center gap-3 text-sm font-semibold">View services <Icon name="arrow" class="size-4" /></a></div></section>
+<section id="principles" class="bg-almond-50 text-black-950 py-20 lg:py-28"><div class="container-wide"><SectionIntro eyebrow="Principles / 03" title="Precision without theater" body="The visual and editorial language deliberately avoids generic corporate claims. The focus stays on architecture, reliability, security, integration, and practical delivery." light/><div class="mt-12 grid gap-4 md:grid-cols-3"><div class="border border-black-950/15 p-6"><p class="eyebrow">01</p><h3 class="mt-14 h3">Technical clarity</h3><p class="mt-4 text-sm leading-6 text-black-950/60">Prefer direct language, explicit boundaries, and useful documentation.</p></div><div class="border border-black-950/15 p-6"><p class="eyebrow">02</p><h3 class="mt-14 h3">System thinking</h3><p class="mt-4 text-sm leading-6 text-black-950/60">Consider dependencies between infrastructure, security, automation, and use.</p></div><div class="border border-black-950/15 p-6"><p class="eyebrow">03</p><h3 class="mt-14 h3">Long-term support</h3><p class="mt-4 text-sm leading-6 text-black-950/60">A successful implementation should still make sense after handover.</p></div></div></div></section>
+<section class="bg-black-950 text-black-50 py-20 lg:py-24 border-t border-white/10">
+  <div class="container-wide">
+    <div class="flex flex-col gap-7 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="eyebrow text-white/45">Next step / 04</p>
+        <h2 class="h2 mt-4">Explore the service architecture.</h2>
+        <p class="body-lg mt-4 max-w-2xl text-white/60">Discover how Novand connects network infrastructure, security surveillance, server environments, and smart automation into one coherent system.</p>
+      </div>
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <a href={path('/services')} class="inline-flex items-center justify-center gap-3 border border-white/70 px-5 py-3.5 text-sm font-semibold hover:bg-white hover:text-black-950 transition-colors">
+          <span>View Services</span>
+          <Icon name="arrow" class="size-4" />
+        </a>
+        <a href={path('/contact')} class="inline-flex items-center justify-center gap-3 border border-white/20 px-5 py-3.5 text-sm font-semibold text-white/80 hover:border-white/60 hover:text-white transition-colors">
+          <span>Request a Consultation</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 </SiteLayout>

@@ -33,19 +33,65 @@ const svg = `
   <path d="M 1136 574 L 1152 574 M 1144 566 L 1144 582" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5" />
 
   <!-- Top bar: Logo + Eyebrow -->
-  <g transform="translate(100, 110)">
+  <g transform="translate(100, 106)">
     <!-- Logo Symbol -->
-    <rect x="0" y="0" width="38" height="38" fill="none" stroke="#f6f3ee" stroke-width="2" />
-    <rect x="13" y="13" width="12" height="12" fill="#f6f3ee" />
+    <g transform="scale(0.48)">
+      <defs>
+        <linearGradient id="ogCircuitGrad" x1="20%" y1="100%" x2="90%" y2="20%">
+          <stop offset="0%" stop-color="#06B6D4" />
+          <stop offset="50%" stop-color="#0EA5E9" />
+          <stop offset="100%" stop-color="#10B981" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M 85 42 L 50 18 L 19 42 L 19 70 L 48 70"
+        stroke="#ffffff"
+        stroke-width="6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+      />
+      <rect x="42.5" y="38.5" width="6" height="6" rx="0.8" fill="#ffffff" />
+      <rect x="51.5" y="38.5" width="6" height="6" rx="0.8" fill="#ffffff" />
+      <rect x="42.5" y="47.5" width="6" height="6" rx="0.8" fill="#ffffff" />
+      <rect x="51.5" y="47.5" width="6" height="6" rx="0.8" fill="#ffffff" />
+      <path
+        d="M 29 77 L 55 77 L 76.5 51 L 78 51"
+        stroke="url(#ogCircuitGrad)"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+      />
+      <circle cx="81.5" cy="51" r="4.2" stroke="url(#ogCircuitGrad)" stroke-width="2.6" fill="none" />
+      <path
+        d="M 44 84 L 60 84 L 74.5 68 L 78 68"
+        stroke="url(#ogCircuitGrad)"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+      />
+      <circle cx="81.5" cy="68" r="4.2" stroke="url(#ogCircuitGrad)" stroke-width="2.6" fill="none" />
+      <path
+        d="M 60 91 L 68 91 L 76 82.5 L 78 82.5"
+        stroke="url(#ogCircuitGrad)"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+      />
+      <circle cx="81.5" cy="82.5" r="4.2" stroke="url(#ogCircuitGrad)" stroke-width="2.6" fill="none" />
+    </g>
     
     <!-- Logo Text -->
-    <text x="54" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4.5" fill="#f6f3ee">NOVAND</text>
+    <text x="56" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="4.5" fill="#ffffff">NOVAND</text>
     
     <!-- Vertical divider -->
-    <line x1="210" y1="6" x2="210" y2="32" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1" />
+    <line x1="222" y1="10" x2="222" y2="38" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1" />
     
     <!-- Category Eyebrow -->
-    <text x="232" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="2.5" fill="rgba(246, 243, 238, 0.5)">INTEGRATED SYSTEMS &amp; INFRASTRUCTURE</text>
+    <text x="244" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="2.5" fill="rgba(246, 243, 238, 0.5)">INTEGRATED SYSTEMS &amp; INFRASTRUCTURE</text>
   </g>
 
   <!-- Accent Rule -->

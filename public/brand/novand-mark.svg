@@ -1,0 +1,60 @@
+
+  <svg width="2048" height="2048" viewBox="-6 -6 112 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <defs>
+      <linearGradient id="circGrad" x1="20%" y1="100%" x2="90%" y2="20%">
+        <stop offset="0%" stop-color="#06B6D4" />
+        <stop offset="50%" stop-color="#0EA5E9" />
+        <stop offset="100%" stop-color="#10B981" />
+      </linearGradient>
+      
+    </defs>
+
+    
+
+    <g >
+      <!-- Architectural House Outline -->
+      <path
+        d="M 85 42 L 50 18 L 19 42 L 19 70 L 48 70"
+        stroke="#0F172A"
+        stroke-width="5.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <!-- 4-Pane Window -->
+      <rect x="42.5" y="38.5" width="6" height="6" rx="0.8" fill="#0F172A" />
+      <rect x="51.5" y="38.5" width="6" height="6" rx="0.8" fill="#0F172A" />
+      <rect x="42.5" y="47.5" width="6" height="6" rx="0.8" fill="#0F172A" />
+      <rect x="51.5" y="47.5" width="6" height="6" rx="0.8" fill="#0F172A" />
+
+      <!-- Circuit Trace 1 (Top) -->
+      <path
+        d="M 29 77 L 55 77 L 76.5 51 L 78 51"
+        stroke="url(#circGrad)"
+        stroke-width="4.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle cx="81.5" cy="51" r="4.2" stroke="url(#circGrad)" stroke-width="2.6" fill="none" />
+
+      <!-- Circuit Trace 2 (Middle) -->
+      <path
+        d="M 44 84 L 60 84 L 74.5 68 L 78 68"
+        stroke="url(#circGrad)"
+        stroke-width="4.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle cx="81.5" cy="68" r="4.2" stroke="url(#circGrad)" stroke-width="2.6" fill="none" />
+
+      <!-- Circuit Trace 3 (Bottom) -->
+      <path
+        d="M 60 91 L 68 91 L 76 82.5 L 78 82.5"
+        stroke="url(#circGrad)"
+        stroke-width="4.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle cx="81.5" cy="82.5" r="4.2" stroke="url(#circGrad)" stroke-width="2.6" fill="none" />
+    </g>
+  </svg>

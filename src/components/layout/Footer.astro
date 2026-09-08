@@ -1,6 +1,7 @@
 ---
 import { company, navigation, path } from '../../data/site';
 import Icon from '../ui/Icon.astro';
+import Logo from './Logo.astro';
 
 interface Props {
   light?: boolean;
@@ -14,12 +15,7 @@ const { light = false } = Astro.props;
     <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-12">
       <!-- Col 1: Brand & Operational Scope (4 cols on lg) -->
       <div class="lg:col-span-4">
-        <a id="footer-logo" href={path('/')} class="inline-flex items-center gap-3 group" aria-label="Novand home">
-          <span class="grid size-8 place-items-center border border-white/25 group-hover:border-white/70 transition-colors" aria-hidden="true">
-            <span class="size-2 bg-white"></span>
-          </span>
-          <span class="text-sm font-bold tracking-[0.22em] uppercase text-white">Novand</span>
-        </a>
+        <Logo id="footer-logo" textClass="text-white text-sm" size="md" />
         <p class="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
           Integrated technology engineering and infrastructure systems, designed as one coherent environment. We bridge networking, security, automation, and systems administration.
         </p>
@@ -79,6 +75,7 @@ const { light = false } = Astro.props;
           <a class="hover:text-white transition-colors" href={path('/about')}>About Novand</a>
           <a class="hover:text-white transition-colors" href={path('/consulting')}>Technical Advisory</a>
           <a class="hover:text-white transition-colors" href={path('/projects')}>Projects & Case Studies</a>
+          <a class="hover:text-white transition-colors" href={path('/brand')}>Brand & Logo Assets</a>
           <a class="hover:text-white transition-colors" href={path('/contact')}>Contact & Inquiries</a>
         </div>
 
@@ -101,7 +98,7 @@ const { light = false } = Astro.props;
       </div>
 
       <div class="flex items-center gap-6">
-        <a class="hover:text-white transition-colors" href={path('/about')}>Engineering Principles</a>
+        <a class="hover:text-white transition-colors" href={path('/about#principles')}>Engineering Principles</a>
         <a class="hover:text-white transition-colors" href={path('/contact')}>Inquiries</a>
         <button
           id="footer-back-to-top"

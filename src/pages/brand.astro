@@ -1,0 +1,768 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SectionIntro from '../components/sections/SectionIntro.astro';
+import Icon from '../components/ui/Icon.astro';
+import { path } from '../data/site';
+
+const assets = {
+  instagramProfiles: [
+    {
+      id: 'ig-profile-dark',
+      title: 'Instagram Profile — Dark Obsidian',
+      desc: '1080 × 1080 px • Optimized with circular safe-zone margin for Instagram, LinkedIn, and Twitter profile pictures.',
+      preview: path('/brand/novand-instagram-profile-dark.png'),
+      downloadPng: path('/brand/novand-instagram-profile-dark.png'),
+      downloadSvg: path('/brand/novand-instagram-profile-dark.svg'),
+      filename: 'novand-instagram-profile-dark.png',
+      isDark: true,
+    },
+    {
+      id: 'ig-profile-light',
+      title: 'Instagram Profile — Clean White',
+      desc: '1080 × 1080 px • High-contrast light background with architectural obsidian contours and cyan/emerald gradient traces.',
+      preview: path('/brand/novand-instagram-profile-light.png'),
+      downloadPng: path('/brand/novand-instagram-profile-light.png'),
+      downloadSvg: path('/brand/novand-instagram-profile-light.svg'),
+      filename: 'novand-instagram-profile-light.png',
+      isDark: false,
+    },
+    {
+      id: 'ig-profile-trans',
+      title: 'Profile Avatar — Transparent PNG',
+      desc: '1080 × 1080 px • Transparent background with white house structure and circuit traces for custom badges & overlays.',
+      preview: path('/brand/novand-instagram-profile-transparent.png'),
+      downloadPng: path('/brand/novand-instagram-profile-transparent.png'),
+      downloadSvg: null,
+      filename: 'novand-instagram-profile-transparent.png',
+      isDark: true,
+    }
+  ],
+  socialPosts: [
+    {
+      id: 'ig-post-dark',
+      title: 'Instagram Post — Dark Edition',
+      spec: '1080 × 1080 px (1:1 Square)',
+      desc: 'Complete architectural framing with emblem, wordmark, discipline tags, and subtle blueprint grid lines.',
+      preview: path('/brand/novand-instagram-post-dark.png'),
+      downloadPng: path('/brand/novand-instagram-post-dark.png'),
+      filename: 'novand-instagram-post-dark.png',
+    },
+    {
+      id: 'ig-post-light',
+      title: 'Instagram Post — Light Edition',
+      spec: '1080 × 1080 px (1:1 Square)',
+      desc: 'Refined editorial light palette featuring the mark, wordmark, and precision infrastructure tags.',
+      preview: path('/brand/novand-instagram-post-light.png'),
+      downloadPng: path('/brand/novand-instagram-post-light.png'),
+      filename: 'novand-instagram-post-light.png',
+    },
+    {
+      id: 'ig-story-dark',
+      title: 'Instagram Story & Reels Cover',
+      spec: '1080 × 1920 px (9:16 Vertical)',
+      desc: 'Optimized vertical layout for Instagram Stories, Reels cover art, status updates, or mobile lockscreens.',
+      preview: path('/brand/novand-instagram-story-dark.png'),
+      downloadPng: path('/brand/novand-instagram-story-dark.png'),
+      filename: 'novand-instagram-story-dark.png',
+    }
+  ],
+  horizontalLogos: [
+    {
+      id: 'logo-dark',
+      title: 'Horizontal Brand Lockup — Dark Obsidian',
+      spec: '2400 × 750 px • Dark Background',
+      preview: path('/brand/novand-logo-horizontal-dark.png'),
+      downloadPng: path('/brand/novand-logo-horizontal-dark.png'),
+      downloadSvg: path('/brand/novand-logo-horizontal-dark.svg'),
+      filename: 'novand-logo-horizontal-dark.png',
+    },
+    {
+      id: 'logo-light',
+      title: 'Horizontal Brand Lockup — Light Pure',
+      spec: '2400 × 750 px • White Background',
+      preview: path('/brand/novand-logo-horizontal-light.png'),
+      downloadPng: path('/brand/novand-logo-horizontal-light.png'),
+      downloadSvg: path('/brand/novand-logo-horizontal-light.svg'),
+      filename: 'novand-logo-horizontal-light.png',
+    },
+    {
+      id: 'logo-trans',
+      title: 'Horizontal Brand Lockup — Transparent',
+      spec: '2400 × 750 px • Transparent PNG',
+      preview: path('/brand/novand-logo-horizontal-transparent.png'),
+      downloadPng: path('/brand/novand-logo-horizontal-transparent.png'),
+      downloadSvg: null,
+      filename: 'novand-logo-horizontal-transparent.png',
+    }
+  ],
+  persianLockups: [
+    {
+      id: 'persian-rtl-dark',
+      title: 'Persian RTL Lockup — Dark Obsidian (نشان راست‌چین تیره)',
+      spec: '2400 × 750 px • Dark Background • Natural RTL',
+      desc: 'Natural Persian right-to-left layout with the architectural mark on the right, bold "نوَند" wordmark, and "سیستم‌های یکپارچه و زیرساخت" caption.',
+      preview: path('/brand/novand-logo-persian-rtl-dark.png'),
+      downloadPng: path('/brand/novand-logo-persian-rtl-dark.png'),
+      downloadSvg: path('/brand/novand-logo-persian-rtl-dark.svg'),
+      filename: 'novand-logo-persian-rtl-dark.png',
+      isDark: true,
+      tag: 'RTL فارسی',
+    },
+    {
+      id: 'persian-rtl-light',
+      title: 'Persian RTL Lockup — Clean White (نشان راست‌چین روشن)',
+      spec: '2400 × 750 px • White Background • Natural RTL',
+      desc: 'High-contrast light background variant for Persian documentation, letterheads, and website headers.',
+      preview: path('/brand/novand-logo-persian-rtl-light.png'),
+      downloadPng: path('/brand/novand-logo-persian-rtl-light.png'),
+      downloadSvg: path('/brand/novand-logo-persian-rtl-light.svg'),
+      filename: 'novand-logo-persian-rtl-light.png',
+      isDark: false,
+      tag: 'RTL فارسی',
+    },
+    {
+      id: 'persian-rtl-trans',
+      title: 'Persian RTL Lockup — Transparent (نشان راست‌چین شفاف)',
+      spec: '2400 × 750 px • Transparent PNG • Natural RTL',
+      desc: 'Transparent background for compositing over hero sections, photography, or custom UI banners.',
+      preview: path('/brand/novand-logo-persian-rtl-transparent.png'),
+      downloadPng: path('/brand/novand-logo-persian-rtl-transparent.png'),
+      downloadSvg: null,
+      filename: 'novand-logo-persian-rtl-transparent.png',
+      isDark: true,
+      tag: 'RTL فارسی',
+    },
+    {
+      id: 'bilingual-dark',
+      title: 'Bilingual Horizontal Lockup — Dark Obsidian (لوگوی دوزبانه تیره)',
+      spec: '2400 × 750 px • Dark Background • English & Persian',
+      desc: 'Complete bilingual corporate signature combining "NOVAND" and "نوَند" with dual-language subtitle.',
+      preview: path('/brand/novand-logo-bilingual-horizontal-dark.png'),
+      downloadPng: path('/brand/novand-logo-bilingual-horizontal-dark.png'),
+      downloadSvg: path('/brand/novand-logo-bilingual-horizontal-dark.svg'),
+      filename: 'novand-logo-bilingual-horizontal-dark.png',
+      isDark: true,
+      tag: 'Bilingual دوزبانه',
+    },
+    {
+      id: 'bilingual-light',
+      title: 'Bilingual Horizontal Lockup — Clean White (لوگوی دوزبانه روشن)',
+      spec: '2400 × 750 px • White Background • English & Persian',
+      desc: 'Editorial light version of the bilingual master signature for official corporate stationery and cross-border contracts.',
+      preview: path('/brand/novand-logo-bilingual-horizontal-light.png'),
+      downloadPng: path('/brand/novand-logo-bilingual-horizontal-light.png'),
+      downloadSvg: path('/brand/novand-logo-bilingual-horizontal-light.svg'),
+      filename: 'novand-logo-bilingual-horizontal-light.png',
+      isDark: false,
+      tag: 'Bilingual دوزبانه',
+    },
+    {
+      id: 'bilingual-trans',
+      title: 'Bilingual Horizontal Lockup — Transparent (لوگوی دوزبانه شفاف)',
+      spec: '2400 × 750 px • Transparent PNG • English & Persian',
+      desc: 'Transparent bilingual lockup for video intros, presentation decks, and web headers.',
+      preview: path('/brand/novand-logo-bilingual-horizontal-transparent.png'),
+      downloadPng: path('/brand/novand-logo-bilingual-horizontal-transparent.png'),
+      downloadSvg: null,
+      filename: 'novand-logo-bilingual-horizontal-transparent.png',
+      isDark: true,
+      tag: 'Bilingual دوزبانه',
+    },
+    {
+      id: 'persian-ltr-dark',
+      title: 'Persian Standard Layout — Dark Obsidian (نشان استاندارد تیره)',
+      spec: '2400 × 750 px • Dark Background • Standard Alignment',
+      desc: 'Standard alignment with mark on left and Persian typography on right, suited for tech platforms and multi-column menus.',
+      preview: path('/brand/novand-logo-persian-horizontal-dark.png'),
+      downloadPng: path('/brand/novand-logo-persian-horizontal-dark.png'),
+      downloadSvg: path('/brand/novand-logo-persian-horizontal-dark.svg'),
+      filename: 'novand-logo-persian-horizontal-dark.png',
+      isDark: true,
+      tag: 'Standard Alignment',
+    },
+    {
+      id: 'persian-ltr-light',
+      title: 'Persian Standard Layout — Clean White (نشان استاندارد روشن)',
+      spec: '2400 × 750 px • White Background • Standard Alignment',
+      desc: 'Light standard-alignment version for light-themed applications.',
+      preview: path('/brand/novand-logo-persian-horizontal-light.png'),
+      downloadPng: path('/brand/novand-logo-persian-horizontal-light.png'),
+      downloadSvg: path('/brand/novand-logo-persian-horizontal-light.svg'),
+      filename: 'novand-logo-persian-horizontal-light.png',
+      isDark: false,
+      tag: 'Standard Alignment',
+    },
+    {
+      id: 'persian-ltr-trans',
+      title: 'Persian Standard Layout — Transparent (نشان استاندارد شفاف)',
+      spec: '2400 × 750 px • Transparent PNG • Standard Alignment',
+      desc: 'Transparent standard-alignment version for custom overlays.',
+      preview: path('/brand/novand-logo-persian-horizontal-transparent.png'),
+      downloadPng: path('/brand/novand-logo-persian-horizontal-transparent.png'),
+      downloadSvg: null,
+      filename: 'novand-logo-persian-horizontal-transparent.png',
+      isDark: true,
+      tag: 'Standard Alignment',
+    },
+  ],
+  persianSocial: [
+    {
+      id: 'persian-post-dark',
+      title: 'Persian Instagram Post — Dark Edition',
+      persianTitle: 'پست اینستاگرام فارسی — نسخه تیره',
+      spec: '1080 × 1080 px (1:1 Square)',
+      desc: 'Architectural blueprint framing with Persian wordmark "نوَند", caption "سیستم‌های یکپارچه و زیرساخت", and Persian domain tags.',
+      preview: path('/brand/novand-instagram-post-persian-dark.png'),
+      downloadPng: path('/brand/novand-instagram-post-persian-dark.png'),
+      filename: 'novand-instagram-post-persian-dark.png',
+    },
+    {
+      id: 'persian-post-light',
+      title: 'Persian Instagram Post — Light Edition',
+      persianTitle: 'پست اینستاگرام فارسی — نسخه روشن',
+      spec: '1080 × 1080 px (1:1 Square)',
+      desc: 'Clean editorial light background with Persian typography and precision technical tags.',
+      preview: path('/brand/novand-instagram-post-persian-light.png'),
+      downloadPng: path('/brand/novand-instagram-post-persian-light.png'),
+      filename: 'novand-instagram-post-persian-light.png',
+    },
+    {
+      id: 'persian-story-dark',
+      title: 'Persian Instagram Story & Reels — Dark',
+      persianTitle: 'استوری و ریلز اینستاگرام — تیره',
+      spec: '1080 × 1920 px (9:16 Vertical)',
+      desc: 'Vertical 9:16 format with subtle grid, architectural mark, Persian wordmark, and engineering tagline.',
+      preview: path('/brand/novand-instagram-story-persian-dark.png'),
+      downloadPng: path('/brand/novand-instagram-story-persian-dark.png'),
+      filename: 'novand-instagram-story-persian-dark.png',
+    },
+    {
+      id: 'persian-story-light',
+      title: 'Persian Instagram Story & Reels — Light',
+      persianTitle: 'استوری و ریلز اینستاگرام — روشن',
+      spec: '1080 × 1920 px (9:16 Vertical)',
+      desc: 'Light editorial vertical wallpaper and highlight cover for Persian announcements.',
+      preview: path('/brand/novand-instagram-story-persian-light.png'),
+      downloadPng: path('/brand/novand-instagram-story-persian-light.png'),
+      filename: 'novand-instagram-story-persian-light.png',
+    },
+  ],
+  masterMarks: [
+    {
+      id: 'mark-white',
+      title: 'Vector Master Mark — White & Gradient',
+      spec: '2048 × 2048 px Transparent PNG + SVG',
+      desc: 'For dark backgrounds, video overlays, and presentation slides.',
+      preview: path('/brand/novand-mark-transparent-white.png'),
+      downloadPng: path('/brand/novand-mark-transparent-white.png'),
+      downloadSvg: path('/brand/novand-mark.svg'),
+      filename: 'novand-mark-transparent-white.png',
+    },
+    {
+      id: 'mark-dark',
+      title: 'Vector Master Mark — Dark & Gradient',
+      spec: '2048 × 2048 px Transparent PNG',
+      desc: 'For light backgrounds, stationery, and document headers.',
+      preview: path('/brand/novand-mark-transparent-dark.png'),
+      downloadPng: path('/brand/novand-mark-transparent-dark.png'),
+      downloadSvg: path('/brand/novand-mark.svg'),
+      filename: 'novand-mark-transparent-dark.png',
+    }
+  ]
+};
+---
+
+<SiteLayout
+  title="Brand Assets & Logo Export Kit — Novand"
+  description="Download official Novand logo assets, Instagram profile pictures, square social posts, vertical stories, and high-resolution brand lockups."
+  light
+>
+  <!-- Hero Section -->
+  <section class="bg-khaki-50 text-black-950 py-16 lg:py-24 border-b border-black-950/10">
+    <div class="container-wide">
+      <div class="max-w-4xl">
+        <p class="eyebrow text-black-950/45">Brand Identity / Media Kit</p>
+        <h1 class="h1 mt-5">Novand Logo &amp; Platform Assets</h1>
+        <p class="body-lg mt-6 text-black-950/70 max-w-3xl">
+          High-resolution image exports and vector assets optimized for social platforms including Instagram, LinkedIn, Twitter/X, and digital publications. Each asset is calibrated for crisp display across mobile apps and high-density screens.
+        </p>
+      </div>
+
+      <!-- Quick Platform Jump Links -->
+      <div class="mt-10 flex flex-wrap items-center gap-3">
+        <a href="#instagram-profiles" class="inline-flex items-center gap-2 border border-black-950/20 bg-black-950/5 px-4 py-2 text-xs font-semibold text-black-950 hover:border-black-950 transition-colors">
+          <span>Instagram Profile Avatars</span>
+          <span class="text-xs">↓</span>
+        </a>
+        <a href="#social-posts" class="inline-flex items-center gap-2 border border-black-950/20 bg-black-950/5 px-4 py-2 text-xs font-semibold text-black-950 hover:border-black-950 transition-colors">
+          <span>Instagram Posts &amp; Stories</span>
+          <span class="text-xs">↓</span>
+        </a>
+        <a href="#horizontal-logos" class="inline-flex items-center gap-2 border border-black-950/20 bg-black-950/5 px-4 py-2 text-xs font-semibold text-black-950 hover:border-black-950 transition-colors">
+          <span>Horizontal Lockups</span>
+          <span class="text-xs">↓</span>
+        </a>
+        <a href="#persian-logos" class="inline-flex items-center gap-2 border border-emerald-600/30 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-950 hover:border-emerald-600 transition-colors">
+          <span>Persian Captioned Logos (لوگوهای فارسی)</span>
+          <span class="text-xs text-emerald-600">↓</span>
+        </a>
+        <a href="#persian-social" class="inline-flex items-center gap-2 border border-emerald-600/30 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-950 hover:border-emerald-600 transition-colors">
+          <span>Persian Social Graphics (پست و استوری)</span>
+          <span class="text-xs text-emerald-600">↓</span>
+        </a>
+        <a href="#master-marks" class="inline-flex items-center gap-2 border border-black-950/20 bg-black-950/5 px-4 py-2 text-xs font-semibold text-black-950 hover:border-black-950 transition-colors">
+          <span>Ultra-HD Master Marks</span>
+          <span class="text-xs">↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Instagram Profile Pictures -->
+  <section id="instagram-profiles" class="bg-black-950 text-black-50 py-20 lg:py-28 border-b border-white/10">
+    <div class="container-wide">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-emerald-400">01 / Social Identity</p>
+          <h2 class="h2 mt-3 text-white">Instagram Profile Pictures</h2>
+          <p class="mt-4 max-w-2xl text-sm leading-relaxed text-white/65">
+            Instagram crops profile pictures into a circle. These 1080 × 1080 px images have built-in 24% protective margin so neither the roof peak nor the circuit nodes are cut off when rendered inside Instagram's circular avatar frame.
+          </p>
+        </div>
+        <div class="shrink-0 flex items-center gap-2 text-xs text-white/50 bg-white/5 px-3.5 py-2 border border-white/10">
+          <span class="size-2 rounded-full bg-emerald-400"></span>
+          <span>Circular Crop Safe Guarantee</span>
+        </div>
+      </div>
+
+      <div class="mt-14 grid gap-8 md:grid-cols-3">
+        {assets.instagramProfiles.map((item) => (
+          <div class="flex flex-col justify-between border border-white/15 bg-white/[0.02] p-6 hover:border-white/35 transition-colors">
+            <div>
+              <!-- Image Preview Container with Circle Crop Guide Simulation -->
+              <div class={`relative aspect-square w-full overflow-hidden border border-white/10 flex items-center justify-center p-8 ${item.isDark ? 'bg-[#0B0F19]' : 'bg-[#FFFFFF]'}`}>
+                <img
+                  src={item.preview}
+                  alt={item.title}
+                  class="size-full object-contain relative z-10"
+                  loading="lazy"
+                />
+                
+                <!-- Instagram Circle Guide Ring -->
+                <div
+                  class="pointer-events-none absolute inset-4 rounded-full border border-dashed border-emerald-400/50 z-20"
+                  title="Instagram circular crop boundary"
+                ></div>
+                <div class="absolute bottom-2 right-2 z-20 text-[10px] tracking-wider uppercase font-mono px-2 py-0.5 bg-black/70 text-emerald-400 backdrop-blur-sm border border-emerald-400/30">
+                  Circle Mask Safe
+                </div>
+              </div>
+
+              <h3 class="mt-5 text-base font-bold text-white">{item.title}</h3>
+              <p class="mt-2 text-xs leading-relaxed text-white/60">{item.desc}</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-6 flex flex-wrap gap-2 pt-4 border-t border-white/10">
+              <a
+                href={item.downloadPng}
+                download={item.filename}
+                class="inline-flex items-center gap-2 bg-white text-black-950 px-4 py-2.5 text-xs font-bold hover:bg-emerald-400 hover:text-black-950 transition-colors"
+              >
+                <span>Download PNG</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+              {item.downloadSvg && (
+                <a
+                  href={item.downloadSvg}
+                  download={item.filename.replace('.png', '.svg')}
+                  class="inline-flex items-center gap-2 border border-white/20 text-white/80 px-3 py-2.5 text-xs font-semibold hover:border-white hover:text-white transition-colors"
+                >
+                  <span>SVG</span>
+                  <span aria-hidden="true">↓</span>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Instagram Posts & Stories -->
+  <section id="social-posts" class="bg-black-950 text-black-50 py-20 lg:py-28 border-b border-white/10">
+    <div class="container-wide">
+      <div>
+        <p class="eyebrow text-emerald-400">02 / Platform Content</p>
+        <h2 class="h2 mt-3 text-white">Instagram Posts &amp; Stories</h2>
+        <p class="mt-4 max-w-2xl text-sm leading-relaxed text-white/65">
+          Ready-to-publish branded graphics featuring the emblem, typography, and infrastructure domain signatures.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-8 lg:grid-cols-3">
+        {assets.socialPosts.map((item) => (
+          <div class="flex flex-col justify-between border border-white/15 bg-white/[0.02] p-6 hover:border-white/35 transition-colors">
+            <div>
+              <div class="relative overflow-hidden border border-white/10 bg-black-900 flex items-center justify-center p-3">
+                <img
+                  src={item.preview}
+                  alt={item.title}
+                  class="w-full h-auto max-h-[380px] object-contain shadow-2xl"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="mt-5 flex items-center justify-between">
+                <h3 class="text-base font-bold text-white">{item.title}</h3>
+                <span class="text-[11px] font-mono text-emerald-400 bg-emerald-400/10 px-2 py-0.5 border border-emerald-400/20">
+                  {item.spec}
+                </span>
+              </div>
+              <p class="mt-2 text-xs leading-relaxed text-white/60">{item.desc}</p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/10">
+              <a
+                href={item.downloadPng}
+                download={item.filename}
+                class="inline-flex w-full justify-center items-center gap-2 bg-white text-black-950 px-4 py-2.5 text-xs font-bold hover:bg-emerald-400 hover:text-black-950 transition-colors"
+              >
+                <span>Download High-Res Graphic ({item.spec.split(' ')[0]})</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Horizontal Brand Lockups -->
+  <section id="horizontal-logos" class="bg-black-950 text-black-50 py-20 lg:py-28 border-b border-white/10">
+    <div class="container-wide">
+      <div>
+        <p class="eyebrow text-emerald-400">03 / Wordmark Lockups</p>
+        <h2 class="h2 mt-3 text-white">Horizontal Banners &amp; Headers</h2>
+        <p class="mt-4 max-w-2xl text-sm leading-relaxed text-white/65">
+          Standard 2400 × 750 px horizontal lockups pairing the architectural mark with the bold letterspaced NOVAND wordmark and subtitle. Ideal for website navigation, presentations, Twitter/X header banners, and documentation.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-8">
+        {assets.horizontalLogos.map((item) => (
+          <div class="border border-white/15 bg-white/[0.02] p-6 lg:p-8 hover:border-white/35 transition-colors">
+            <div class="relative overflow-hidden border border-white/10 p-6 flex items-center justify-center bg-black-900/50">
+              <img
+                src={item.preview}
+                alt={item.title}
+                class="w-full max-h-[160px] object-contain"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h3 class="text-base font-bold text-white">{item.title}</h3>
+                <p class="mt-1 text-xs text-white/60 font-mono">{item.spec}</p>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <a
+                  href={item.downloadPng}
+                  download={item.filename}
+                  class="inline-flex items-center gap-2 bg-white text-black-950 px-4 py-2 text-xs font-bold hover:bg-emerald-400 hover:text-black-950 transition-colors"
+                >
+                  <span>Download PNG</span>
+                  <span aria-hidden="true">↓</span>
+                </a>
+                {item.downloadSvg && (
+                  <a
+                    href={item.downloadSvg}
+                    download={item.filename.replace('.png', '.svg')}
+                    class="inline-flex items-center gap-2 border border-white/20 text-white/80 px-3.5 py-2 text-xs font-semibold hover:border-white hover:text-white transition-colors"
+                  >
+                    <span>Vector SVG</span>
+                    <span aria-hidden="true">↓</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Persian Captioned Logos & Lockups -->
+  <section id="persian-logos" class="bg-black-950 text-black-50 py-20 lg:py-28 border-b border-white/10">
+    <div class="container-wide">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-emerald-400">04 / Persian Identity &amp; Localization (هویت بصری فارسی)</p>
+          <h2 class="h2 mt-3 text-white">Persian Captioned Logos &amp; Lockups</h2>
+          <p class="mt-4 max-w-3xl text-sm leading-relaxed text-white/65">
+            Dedicated Persian brand assets designed specifically for the upcoming Persian edition of the website and regional collateral. Rendered using the contemporary architectural Persian typeface <strong>Vazirmatn</strong>, featuring natural RTL (Right-to-Left) mark alignment, bilingual corporate lockups, and standalone Persian signatures.
+          </p>
+        </div>
+        <div class="shrink-0 flex items-center gap-2 text-xs text-emerald-400 bg-emerald-950/60 px-4 py-2 border border-emerald-500/30">
+          <span class="size-2 rounded-full bg-emerald-400"></span>
+          <span>Vazirmatn Typography • 2400 × 750 px Vector &amp; PNG</span>
+        </div>
+      </div>
+
+      <!-- Persian Lockups Grid -->
+      <div class="mt-14 grid gap-8">
+        {assets.persianLockups.map((item) => (
+          <div class="border border-white/15 bg-white/[0.02] p-6 lg:p-8 hover:border-white/35 transition-colors">
+            <div class={`relative overflow-hidden border border-white/10 p-6 flex items-center justify-center ${item.isDark ? 'bg-black-900/60' : 'bg-white'}`}>
+              <img
+                src={item.preview}
+                alt={item.title}
+                class="w-full max-h-[170px] object-contain"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="mt-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+              <div>
+                <div class="flex items-center gap-3">
+                  <h3 class="text-base font-bold text-white">{item.title}</h3>
+                  <span class="text-[11px] font-mono text-emerald-400 bg-emerald-400/10 px-2.5 py-0.5 border border-emerald-400/20">
+                    {item.tag}
+                  </span>
+                </div>
+                <p class="mt-1.5 text-xs text-white/60 font-mono">{item.spec}</p>
+                <p class="mt-2 text-xs text-white/70 max-w-2xl leading-relaxed">{item.desc}</p>
+              </div>
+
+              <div class="flex items-center gap-2 shrink-0">
+                <a
+                  href={item.downloadPng}
+                  download={item.filename}
+                  class="inline-flex items-center gap-2 bg-white text-black-950 px-4 py-2 text-xs font-bold hover:bg-emerald-400 hover:text-black-950 transition-colors"
+                >
+                  <span>Download 2400px PNG</span>
+                  <span aria-hidden="true">↓</span>
+                </a>
+                {item.downloadSvg && (
+                  <a
+                    href={item.downloadSvg}
+                    download={item.filename.replace('.png', '.svg')}
+                    class="inline-flex items-center gap-2 border border-white/20 text-white/80 px-3.5 py-2 text-xs font-semibold hover:border-white hover:text-white transition-colors"
+                  >
+                    <span>Vector SVG</span>
+                    <span aria-hidden="true">↓</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Persian Instagram Posts & Stories -->
+  <section id="persian-social" class="bg-black-950 text-black-50 py-20 lg:py-28 border-b border-white/10">
+    <div class="container-wide">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div>
+          <p class="eyebrow text-emerald-400">05 / Persian Social &amp; Digital Content</p>
+          <h2 class="h2 mt-3 text-white">Persian Social Posts &amp; Stories (پست و استوری فارسی)</h2>
+          <p class="mt-4 max-w-2xl text-sm leading-relaxed text-white/65">
+            Full-resolution social media cards with Persian brand typography, engineering discipline tags, and blueprint architectural borders.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {assets.persianSocial.map((item) => (
+          <div class="flex flex-col justify-between border border-white/15 bg-white/[0.02] p-6 hover:border-white/35 transition-colors">
+            <div>
+              <div class={`relative overflow-hidden border border-white/10 flex items-center justify-center p-3 ${item.isDark ? 'bg-black-900' : 'bg-white'}`}>
+                <img
+                  src={item.preview}
+                  alt={item.title}
+                  class="w-full h-auto max-h-[340px] object-contain shadow-xl"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="mt-5">
+                <span class="text-[10px] font-mono text-emerald-400 bg-emerald-400/10 px-2 py-0.5 border border-emerald-400/20">
+                  {item.spec}
+                </span>
+                <h3 class="mt-2.5 text-sm font-bold text-white leading-snug">{item.title}</h3>
+                <p class="mt-1 text-xs text-emerald-300/80 font-medium" dir="rtl">{item.persianTitle}</p>
+                <p class="mt-2 text-xs leading-relaxed text-white/60">{item.desc}</p>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/10">
+              <a
+                href={item.downloadPng}
+                download={item.filename}
+                class="inline-flex w-full justify-center items-center gap-2 bg-white text-black-950 px-4 py-2.5 text-xs font-bold hover:bg-emerald-400 hover:text-black-950 transition-colors"
+              >
+                <span>Download Graphic</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Ultra-HD Master Marks -->
+  <section id="master-marks" class="bg-black-950 text-black-50 py-20 lg:py-28 border-b border-white/10">
+    <div class="container-wide">
+      <div>
+        <p class="eyebrow text-emerald-400">06 / Standalone Marks</p>
+        <h2 class="h2 mt-3 text-white">Ultra-HD Transparent Marks</h2>
+        <p class="mt-4 max-w-2xl text-sm leading-relaxed text-white/65">
+          High-resolution 2048 × 2048 px transparent PNGs of the standalone architectural circuit mark. Ready to composite over video, photography, slides, or custom backgrounds.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-8 md:grid-cols-2">
+        {assets.masterMarks.map((item) => (
+          <div class="border border-white/15 bg-white/[0.02] p-6 lg:p-8 hover:border-white/35 transition-colors flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-square w-full overflow-hidden border border-white/10 flex items-center justify-center p-12 bg-black-900/60">
+                <img
+                  src={item.preview}
+                  alt={item.title}
+                  class="size-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+
+              <h3 class="mt-6 text-base font-bold text-white">{item.title}</h3>
+              <p class="mt-1 font-mono text-xs text-emerald-400">{item.spec}</p>
+              <p class="mt-2 text-xs text-white/60 leading-relaxed">{item.desc}</p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/10 flex items-center gap-3">
+              <a
+                href={item.downloadPng}
+                download={item.filename}
+                class="inline-flex items-center gap-2 bg-white text-black-950 px-4 py-2.5 text-xs font-bold hover:bg-emerald-400 hover:text-black-950 transition-colors"
+              >
+                <span>Download 2048px PNG</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+              {item.downloadSvg && (
+                <a
+                  href={item.downloadSvg}
+                  download="novand-mark.svg"
+                  class="inline-flex items-center gap-2 border border-white/20 text-white/80 px-3.5 py-2.5 text-xs font-semibold hover:border-white hover:text-white transition-colors"
+                >
+                  <span>Vector SVG</span>
+                  <span aria-hidden="true">↓</span>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Brand Color & Design Standards -->
+  <section class="bg-khaki-50 text-black-950 py-20 lg:py-24">
+    <div class="container-wide">
+      <SectionIntro
+        eyebrow="Guidelines / 07"
+        title="Color System &amp; Persian Localization Standards"
+        body="Exact hexadecimal values, optical padding ratios, and Persian typography specifications for maintaining brand integrity across international platforms."
+      />
+
+      <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="border border-black-950/15 p-5 bg-white">
+          <div class="h-16 w-full bg-[#0B0F19] border border-black/10"></div>
+          <p class="mt-4 text-xs font-mono uppercase tracking-wider text-black-950/50">Base Dark</p>
+          <p class="text-sm font-bold text-black-950">Obsidian Slate</p>
+          <p class="font-mono text-xs text-black-950/70 mt-1">#0B0F19</p>
+        </div>
+
+        <div class="border border-black-950/15 p-5 bg-white">
+          <div class="h-16 w-full bg-[#06B6D4] border border-black/10"></div>
+          <p class="mt-4 text-xs font-mono uppercase tracking-wider text-black-950/50">Circuit Gradient Start</p>
+          <p class="text-sm font-bold text-black-950">Electric Cyan</p>
+          <p class="font-mono text-xs text-black-950/70 mt-1">#06B6D4</p>
+        </div>
+
+        <div class="border border-black-950/15 p-5 bg-white">
+          <div class="h-16 w-full bg-[#0EA5E9] border border-black/10"></div>
+          <p class="mt-4 text-xs font-mono uppercase tracking-wider text-black-950/50">Circuit Gradient Mid</p>
+          <p class="text-sm font-bold text-black-950">Precision Sky</p>
+          <p class="font-mono text-xs text-black-950/70 mt-1">#0EA5E9</p>
+        </div>
+
+        <div class="border border-black-950/15 p-5 bg-white">
+          <div class="h-16 w-full bg-[#10B981] border border-black/10"></div>
+          <p class="mt-4 text-xs font-mono uppercase tracking-wider text-black-950/50">Circuit Gradient End</p>
+          <p class="text-sm font-bold text-black-950">Active Emerald</p>
+          <p class="font-mono text-xs text-black-950/70 mt-1">#10B981</p>
+        </div>
+      </div>
+
+      <!-- Persian Localization & Typography System Callout -->
+      <div class="mt-10 border border-black-950/15 bg-white p-7 lg:p-9">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-black-950/10 pb-5">
+          <div>
+            <span class="text-xs font-mono uppercase text-emerald-700 font-bold tracking-wider">Persian Localization Guidelines (راهنمای هویت بصری فارسی)</span>
+            <h3 class="text-xl font-bold text-black-950 mt-1">Persian Typography &amp; Caption Specifications</h3>
+          </div>
+          <div class="shrink-0 font-mono text-xs bg-black-950/5 px-3 py-1.5 border border-black-950/15">
+            Typeface: <strong>Vazirmatn (وزیرمتن)</strong>
+          </div>
+        </div>
+
+        <div class="mt-6 grid gap-6 md:grid-cols-3 text-xs leading-relaxed text-black-950/80">
+          <div class="p-4 bg-khaki-50 border border-black-950/10">
+            <p class="font-bold text-black-950 text-sm">Primary Brand Wordmark</p>
+            <p class="mt-2 text-2xl font-black text-black-950" dir="rtl" style="font-family: 'Vazirmatn', sans-serif;">نوَند</p>
+            <p class="mt-2 text-black-950/60 font-mono">Weight: 800 (ExtraBold) • Tracking: 0 (Persian script naturally connects)</p>
+            <p class="mt-2 text-black-950/75">Used as the standalone brand title in all Persian navigation bars, mastheads, and localized documentation.</p>
+          </div>
+
+          <div class="p-4 bg-khaki-50 border border-black-950/10">
+            <p class="font-bold text-black-950 text-sm">Official Subtitle Caption</p>
+            <p class="mt-2 text-base font-bold text-black-950" dir="rtl" style="font-family: 'Vazirmatn', sans-serif;">سیستم‌های یکپارچه و زیرساخت</p>
+            <p class="mt-2 text-black-950/60 font-mono">Weight: 600 (SemiBold) • Translation of "Integrated Systems &amp; Infrastructure"</p>
+            <p class="mt-2 text-black-950/75">Always paired directly beneath the primary wordmark or separated by a subtle vertical pipe divider.</p>
+          </div>
+
+          <div class="p-4 bg-khaki-50 border border-black-950/10">
+            <p class="font-bold text-black-950 text-sm">RTL Architectural Alignment</p>
+            <p class="mt-2 text-sm font-semibold text-emerald-800">Natural Right-to-Left (RTL)</p>
+            <p class="mt-2 text-black-950/60 font-mono">Mark Position: Right side • Text Alignment: End/Right</p>
+            <p class="mt-2 text-black-950/75">In natural Persian reading environments, the logo mark acts as the anchor on the right, matching Arabic/Persian reading flow.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instagram Guidelines Callout -->
+      <div class="mt-6 border border-black-950/15 bg-white p-7 lg:p-9">
+        <h3 class="text-base font-bold text-black-950">Instagram Profile Picture &amp; Social Tips</h3>
+        <ul class="mt-4 grid gap-3 text-xs leading-relaxed text-black-950/75 sm:grid-cols-2 lg:grid-cols-3">
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-bold">✓</span>
+            <span><strong>Upload Dark or Light 1080px:</strong> Instagram downsamples avatars to 320×320. Uploading 1080×1080 guarantees retina sharpness.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-bold">✓</span>
+            <span><strong>Circular Safe Margins:</strong> The provided Instagram Profile files include 24% inner margins so all nodes stay intact inside the circle.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-bold">✓</span>
+            <span><strong>Stories &amp; Highlights:</strong> Use the 1080×1920 Story format for highlight covers, announcements, or intro video title cards.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</SiteLayout>
